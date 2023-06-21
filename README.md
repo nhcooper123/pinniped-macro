@@ -13,7 +13,7 @@ To cite the paper:
 To cite this repo: 
 >  
 
-![alt text](https://github.com/nhcooper123/pinniped-macro/raw/master/figures/example.png)
+![alt text](https://github.com/nhcooper123/pinniped-macro/raw/main/figures/example.png)
 
 This paper has three main components, a metatree of Pinnipedia, biogeographical analyses and diversification analyses.
 
