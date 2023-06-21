@@ -77,7 +77,7 @@ BioGeoBEARS_run_object$return_condlikes_table <- TRUE
 BioGeoBEARS_run_object$calc_TTL_loglike_from_condlikes_table <- TRUE
 BioGeoBEARS_run_object$calc_ancprobs <- TRUE    # get ancestral states from optim run
 
-# Setup state lists
+# Setup state lists (comment in/out depending on analysis being run)
 # Impossible removed only
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
@@ -104,12 +104,19 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 #----------------------------------
 # Run DEC model and save results
 #----------------------------------
+# Impossible removed only
 resfn <- "pinnipeds-all-DEC_9areas_impossible.Rdata"
 res <- bears_optim_run(BioGeoBEARS_run_object)
 res    
 save(res, file = resfn)
 resDEC <- res
 
+# Impossible and unlikely removed
+#resfn1 <- "pinnipeds-all-DEC_9areas_neither.Rdata"
+#res1 <- bears_optim_run(BioGeoBEARS_run_object)
+#res1    
+#save(res1, file = resfn1)
+#resDEC1 <- res1
 #----------------------------------
 # SETUP DEC+J
 #----------------------------------
@@ -166,7 +173,7 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","type"] = "free
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","init"] = jstart
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","est"] = jstart
 
-# Setup state lists
+# Setup state lists (comment in/out depending on analysis being run)
 # Impossible removed only
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
@@ -193,7 +200,14 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 #----------------------------------
 # Run DECJ model and save results
 #----------------------------------
-resfnDECJ <- "pinnipeds-all-DECJ_9areas_impossible_unlikely.Rdata"
+# Impossible removed only
+resfnDECJ <- "pinnipeds-all-DECJ_9areas_impossible.Rdata"
 resDECJ <- bears_optim_run(BioGeoBEARS_run_object)
 resDECJ    
 save(resDECJ, file = resfnDECJ)
+
+# Impossible and unlikely removed
+#resfnDECJ1 <- "pinnipeds-all-DECJ_9areas_neither.Rdata"
+#resDECJ1 <- bears_optim_run(BioGeoBEARS_run_object)
+#resDECJ1    
+#save(resDECJ1, file = resfnDECJ1)
