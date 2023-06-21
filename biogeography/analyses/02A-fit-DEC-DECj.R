@@ -100,14 +100,14 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 # Run DEC model and save results
 #----------------------------------
 # Impossible removed only
-resfn <- "pinnipeds-all-DEC_9areas_impossible.Rdata"
+resfn <- "biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata"
 res <- bears_optim_run(BioGeoBEARS_run_object)
 res    
 save(res, file = resfn)
 resDEC <- res
 
 # Impossible and unlikely removed
-#resfn1 <- "pinnipeds-all-DEC_9areas_neither.Rdata"
+#resfn1 <- "biogeography/outputs/pinnipeds-all-DEC_9areas_neither.Rdata"
 #res1 <- bears_optim_run(BioGeoBEARS_run_object)
 #res1    
 #save(res1, file = resfn1)
@@ -196,13 +196,13 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 # Run DECJ model and save results
 #----------------------------------
 # Impossible removed only
-resfnDECJ <- "pinnipeds-all-DECJ_9areas_impossible.Rdata"
+resfnDECJ <- "biogeography/outputs/pinnipeds-all-DECJ_9areas_impossible.Rdata"
 resDECJ <- bears_optim_run(BioGeoBEARS_run_object)
 resDECJ    
 save(resDECJ, file = resfnDECJ)
 
 # Impossible and unlikely removed
-#resfnDECJ1 <- "pinnipeds-all-DECJ_9areas_neither.Rdata"
+#resfnDECJ1 <- "biogeography/outputs/pinnipeds-all-DECJ_9areas_neither.Rdata"
 #resDECJ1 <- bears_optim_run(BioGeoBEARS_run_object)
 #resDECJ1    
 #save(resDECJ1, file = resfnDECJ1)

@@ -197,13 +197,13 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 # Run DECJ model and save results
 #----------------------------------
 # Impossible removed only
-resfnDECJ_fossil <- "pinnipeds-fossil-DECJ_9areas_impossible.Rdata"
+resfnDECJ_fossil <- "biogeography/outputs/pinnipeds-fossil-DECJ_9areas_impossible.Rdata"
 resDECJ_fossil <- bears_optim_run(BioGeoBEARS_run_object)
 resDECJ_fossil    
 save(resDECJ_fossil, file = resfnDECJ_fossil)
 
 # Impossible and unlikely removed
-#resfnDECJ1_fossil <- "pinnipeds-fossil-DECJ_9areas_neither.Rdata"
+#resfnDECJ1_fossil <- "biogeography/outputs/pinnipeds-fossil-DECJ_9areas_neither.Rdata"
 #resDECJ1_fossil <- bears_optim_run(BioGeoBEARS_run_object)
 #resDECJ1_fossil    
 #save(resDECJ1_fossil, file = resfnDECJ1_fossil)
