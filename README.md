@@ -20,7 +20,13 @@ This paper has three main components, a metatree of Pinnipedia, biogeographical 
 -------
 ## Metatree
 
-Code for the metatree is within the `metatree/` folder
+Code for the metatree is within the `metatree/` folder.
+
+### Data
+All data are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq), but are too large to upload to GitHub.
+
+### Analyses
+
 
 -------
 ## Biogeography analyses
@@ -28,10 +34,10 @@ Code for the metatree is within the `metatree/` folder
 Code for the biogeographical analyses is within the `biogeography/` folder
 
 ### Data
-All cleaned data are available from the [NHM Data Portal](), but also within the  `data/`  and `raw-data` folders/.
+All data are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq), but also within the  `data/`  and `raw-data/` folders.
 
-If you use the cleaned data please cite as follows: 
->  
+If you use the data please cite as follows: 
+>  Travis Park; Gustavo Burin; Graham J Slater; Natalie Cooper (2022). Data from the "Back to the water" project [Data set]. Natural History Museum. 
 
 ### Analyses
 
@@ -48,10 +54,10 @@ R-scripts 01 and 02 are modified versions of BioGeoBEARS R script(s) that can be
 Code for the diversification rate analyses is within the `diversification/` folder
 
 ### Data
-All cleaned data are available from the [NHM Data Portal](), but also within the  `data/`  and `raw-data` folders/.
+All data are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq), but also within the  `data/`  and `raw-data/` folders.
 
-If you use the cleaned data please cite as follows: 
->  
+If you use the data please cite as follows: 
+>  Travis Park; Gustavo Burin; Graham J Slater; Natalie Cooper (2022). Data from the "Back to the water" project [Data set]. Natural History Museum. 
 
 ### Analyses
 
