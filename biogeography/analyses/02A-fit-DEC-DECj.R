@@ -8,11 +8,6 @@
 # BEFORE THIS YOU NEED TO RUN 01 to get state lists
 
 # Load the packages.
-#library(GenSA)   
-#library(FD)     
-#library(snow)     
-#library(parallel)
-#library(rexpokit)
 library(cladoRcpp)
 library(BioGeoBEARS)
 
