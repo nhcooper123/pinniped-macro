@@ -1,5 +1,7 @@
 ### BioGeoBEARS analysis ###
 ## BTTW project July 2023
+## ALL TAXA. 
+## Remove impossible states only
 
 # This R-script is a modified version of the original BioGeoBEARS
 # R script that can be found at http://phylo.wikidot.com/biogeobears
@@ -72,7 +74,7 @@ BioGeoBEARS_run_object$return_condlikes_table <- TRUE
 BioGeoBEARS_run_object$calc_TTL_loglike_from_condlikes_table <- TRUE
 BioGeoBEARS_run_object$calc_ancprobs <- TRUE    # get ancestral states from optim run
 
-# Setup state lists (comment in/out depending on analysis being run)
+# Setup state lists
 # Impossible removed only
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
@@ -83,16 +85,6 @@ BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8A
 
-# Impossible and unlikely removed
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8B
-
 # Check inputs. Read the error messages if you get them!
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
@@ -101,20 +93,17 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 #----------------------------------
 # Impossible removed only
 resfn <- "biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata"
-res <- bears_optim_run(BioGeoBEARS_run_object)
-res    
-save(res, file = resfn)
-resDEC <- res
+resDEC <- bears_optim_run(BioGeoBEARS_run_object)
+resDEC    
+save(resDEC, file = resfn)
 
-# Impossible and unlikely removed
-#resfn1 <- "biogeography/outputs/pinnipeds-all-DEC_9areas_neither.Rdata"
-#res1 <- bears_optim_run(BioGeoBEARS_run_object)
-#res1    
-#save(res1, file = resfn1)
-#resDEC1 <- res1
 #----------------------------------
 # SETUP DEC+J
 #----------------------------------
+# Load DEC results
+load("biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata")
+
+
 BioGeoBEARS_run_object <- define_BioGeoBEARS_run()
 BioGeoBEARS_run_object$trfn <- trfn
 BioGeoBEARS_run_object$geogfn <- geogfn
@@ -123,7 +112,7 @@ BioGeoBEARS_run_object$min_branchlength <- 0.000001
 BioGeoBEARS_run_object$include_null_range <- TRUE    
 
 # time-stratified analysis:
-BioGeoBEARS_run_object$timesfn <- "biogeography/timeperiods-all_9areas.txt"
+BioGeoBEARS_run_object$timesfn <- "biogeography/data/timeperiods-all_9areas.txt"
 #BioGeoBEARS_run_object$dispersal_multipliers_fn = "time_strat_disp.txt"
 #BioGeoBEARS_run_object$areas_allowed_fn = "areas_allowed.txt"
 #BioGeoBEARS_run_object$areas_adjacency_fn = "areas_adjacency.txt"
@@ -179,16 +168,6 @@ BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8A
 
-# Impossible and unlikely removed
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7B
-# BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8B
-
 # Check object
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
@@ -200,9 +179,3 @@ resfnDECJ <- "biogeography/outputs/pinnipeds-all-DECJ_9areas_impossible.Rdata"
 resDECJ <- bears_optim_run(BioGeoBEARS_run_object)
 resDECJ    
 save(resDECJ, file = resfnDECJ)
-
-# Impossible and unlikely removed
-#resfnDECJ1 <- "biogeography/outputs/pinnipeds-all-DECJ_9areas_neither.Rdata"
-#resDECJ1 <- bears_optim_run(BioGeoBEARS_run_object)
-#resDECJ1    
-#save(resDECJ1, file = resfnDECJ1)
