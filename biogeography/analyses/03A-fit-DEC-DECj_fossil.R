@@ -7,7 +7,8 @@
 # R script that can be found at http://phylo.wikidot.com/biogeobears
 # Copyright Nicholas J. Matzke
 
-# BEFORE THIS YOU NEED TO RUN 01 to get state lists
+# BEFORE THIS YOU NEED TO RUN 01B FOSSILS to get state lists
+# This differs from 01A by the fact tiem bin 4 must include Parathethys
 
 # Load the packages.
 library(cladoRcpp)
@@ -76,14 +77,14 @@ BioGeoBEARS_run_object$calc_ancprobs <- TRUE    # get ancestral states from opti
 
 # Setup state lists
 # Impossible removed only
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7A
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8Af
 
 # Check inputs. Read the error messages if you get them!
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
