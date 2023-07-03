@@ -8,7 +8,8 @@
 # Copyright Nicholas J. Matzke
 
 # BEFORE THIS YOU NEED TO RUN 01B FOSSILS to get state lists
-# This differs from 01A by the fact tiem bin 4 must include Parathethys
+# This differs from 01A by the fact time bin 4 must include Parathethys
+source("biogeography/analyses/01B-pinniped-state-list-fix-fossils.R")
 
 # Load the packages.
 library(cladoRcpp)
