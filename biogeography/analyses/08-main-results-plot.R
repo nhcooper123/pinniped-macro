@@ -85,7 +85,7 @@ base <-
 # Add areas
 # Ignore warning message about scales
 area_plot <-
-  gheatmap(base, areas2, offset = 10, width = 0.2,
+  gheatmap(base, areas2, offset = 15, width = 0.2,
          font.size = 2, colnames_position = "top", color = "black")+
          scale_fill_manual(values = basic_cols) +
   theme(legend.position = "none")
@@ -95,22 +95,13 @@ area_plot <-
 # Add clade labels
 area_group_plot <- 
   area_plot + geom_cladelab(data = df, mapping = aes(node = node, label = name),
-              offset = c(20,20,20,30), offset.text = 1)
+              offset = c(22,22,22,32), offset.text = 1)
   
 #-------------------
-# Add pies
-# THIS DOESN'T LOOK GREAT BUT LEAVING HERE FOR POSSIBLE FUTURE USE
-# To get dd2 need to source this...
-source("biogeography/analyses/07-Extract-BGB-results-for-plotting.R")
-
-# Fix node numbers (there are 104 taxa)
-# dd2$node <- dd2$node + 104
-# pies <- nodepie(dd2, cols = 1:256, alpha = 0.6, color = colour_list_impossible)
-# This takes a while to run
-i#nset(area_group_plot, pies, width = 0.1, height = 1)
-#-------------------
 # Add ML states
--------------------------------------------------
+# Need to get results from BGB
+source("biogeography/analyses/07-Extract-BGB-results-for-plotting.R")
+#-------------------------------------------------
 # Need to first fix the colours so they are in alphabetical order
 # Take the legend code to make dff
 dff <- data.frame(state = c("A", "B", "C", "D", "E", "F", "G", "H", "I", 
@@ -136,7 +127,13 @@ area_group_ML_plot <- area_group_plot + geom_nodepoint(aes(colour = MLstates), s
 
 # replot withbase tree and legend to check colours match properly
 # base + geom_nodepoint(aes(colour = MLstates), size = 2) +
-#    scale_colour_manual(values = new_colours)
+# scale_colour_manual(values = new_colours)
+
+#------------------
+# Save plot
+#------------------
+ggsave(area_group_ML_plot, file = "biogeography/outputs/biogeography-nice-figure.png", 
+       width = 9, height = 7, dpi = 900)
 
 #-----------------------
 # Inset
@@ -163,12 +160,54 @@ basic_tree <-
   geom_tiplab(geom = "text", size = 4) +
   geom_rootedge(rootedge = 3)
 
+#------------------------------
+# Add pies
+# Extract nodes required
+# First correct the nodes from 
+# These are at the clade splits and root
+dd3 <- filter(dd2, node == 106 | node == 115 |  node == 153
+                  | node == 154)
+# Change numbers to match tree node numbers
+dd3$node <- 6:9 # 5 taxa, so nodes are 6-9
 
-area_group_ML_plot + (plot_spacer()/basic_tree)
+# Identify states with probabilities > 0.1
+colnames(dd3)[which(dd3[1,] > 0.1)]
+colnames(dd3)[which(dd3[2,] > 0.1)]
+colnames(dd3)[which(dd3[3,] > 0.1)]
+colnames(dd3)[which(dd3[4,] > 0.1)]
 
+# Create colour palette just for these colours
+colours_pies <- c("grey80", "#D400D4", # 2
+                  rep("grey80", 12), "#dcdd65", # 15
+                  rep("grey80", 21), "#81b89a",# 37
+                  rep("grey80", 20), "#1d697c",# 58
+                  rep("grey80", 3), "#3e4355",# 62
+                  rep("grey80", 2), "#9c8aa4",# 65
+                  rep("grey80", 1), "#8EAA39", # 67
+                                     "#f6d699",# 68
+                  rep("grey80", 25), "#ff6f61",# 94
+                  rep("grey80", 162)) 
+
+#png(file = "biogeography/outputs/inset-legend.png", width = 3500, height = 3100, res = 900)
+plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
+legend("topleft", legend = c("A", "ABDH", "ACDH", "ADEH", "ADFH", "ADGH", "ADH", "ADHI", "AI"), 
+       pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 2,
+       col = c("#D400D4", "#dcdd65", "#81b89a", "#1d697c","#3e4355","#9c8aa4","#8EAA39", "#f6d699",
+               "#ff6f61" ))
+mtext("Areas (>10%)", at = 0.25, cex = 1.1)
+#dev.off()
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+pies <- nodepie(dd3, cols = 1:256, alpha = 1, color = colours_pies)
+
+# Add pies to plot
+inset(basic_tree, pies, width = 0.1, height = 1)
+
+# To save
+inset_pies <- inset(basic_tree, pies, width = 0.1, height = 1)
 #------------------
 # Save plot
 #------------------
-ggsave(area_group_ML_plot, file = "biogeography/outputs/biogeography-nice-figure.png", 
-       width = 10, height = 10, dpi = 900)
-
+ggsave(inset_pies, file = "biogeography/outputs/biogeography-inset.png", 
+       width = 8, height = 5, dpi = 900)
