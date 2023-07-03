@@ -155,10 +155,11 @@ tree_basic$tip.label <- gsub("Allodesmus demerei", "Desmatophocidae", tree_basic
 tree_basic$tip.label <- gsub("Potamotherium vallentoni", "stem", tree_basic$tip.label) 
 
 basic_tree <-
-  ggtree(tree_basic) +
-  xlim(-3,40) +
-  geom_tiplab(geom = "text", size = 4) +
-  geom_rootedge(rootedge = 3)
+  ggtree(tree_basic, branch.length = "none") +
+  xlim(-1,8) +
+  geom_tiplab(geom = "text", size = 6) +
+  geom_rootedge(rootedge = 1)
+  
 
 #------------------------------
 # Add pies
@@ -202,12 +203,12 @@ mtext("Areas (>10%)", at = 0.25, cex = 1.1)
 pies <- nodepie(dd3, cols = 1:256, alpha = 1, color = colours_pies)
 
 # Add pies to plot
-inset(basic_tree, pies, width = 0.1, height = 1)
+inset(basic_tree, pies, width = 0.4, height = 1)
 
 # To save
-inset_pies <- inset(basic_tree, pies, width = 0.1, height = 1)
+inset_pies <- inset(basic_tree, pies, width = 0.4, height = 1)
 #------------------
 # Save plot
 #------------------
 ggsave(inset_pies, file = "biogeography/outputs/biogeography-inset.png", 
-       width = 8, height = 5, dpi = 900)
+       width = 8, height = 6, dpi = 900)
