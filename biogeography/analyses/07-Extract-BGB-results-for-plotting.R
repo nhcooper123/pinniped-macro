@@ -1,17 +1,28 @@
 # Extract data for plotting from BGB
 # relprobs_matrix_for_internal_states = pies
 # MLstates = blobs
-    
+# This R-script is a modified version of the original BioGeoBEARS results
+# R script that can be found at http://phylo.wikidot.com/biogeobears
+# Copyright Nicholas J. Matzke
+
 # Load libraries
 library(BioGeoBEARS)
 library(ape)
 library(cladoRcpp)
-    
+
+# BEFORE THIS YOU NEED TO RUN 01 to get state lists
+source("biogeography/analyses/01-pinniped-state-list-fix.R")
 #-------------------
 # Read in the tree
 #------------------
 tree <- read.tree("biogeography/data/pinniped-tree-all_9areas.tre")
-    
+
+#------------------
+# Read in outputs
+#### MODIFY WITH FINAL BEST MODEL
+#------------------
+load("biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata")
+results_object <- resDEC    
 #-----------------------------------------------
 # Read in the geography files and get tip ranges
 #-----------------------------------------------
@@ -22,7 +33,7 @@ tipranges <- getranges_from_LagrangePHYLIP(lgdata_fn=geogfn)
 # Get colours 
 #-----------------------------------------------
 source("biogeography/analyses/messing-about-with-colours.R")
-colors_list_for_states <- colors_list_impossible
+colors_list_for_states <- colour_list_impossible
 
 #-----------------------------------------------
 # BGB tree manipulation
@@ -87,9 +98,10 @@ cols_byNode <- rangestxt_to_colors(possible_ranges_list_txt,
                                       colors_list_for_states, MLstates)
 
 #----------------------------------------------
-#
-#
-
+# Set up dataframe for plotting pies if needed
+#----------------------------------------------
 dd2 <- data.frame(relprobs_matrix_for_internal_states)
 colnames(dd2) <- ranges_list
-dd2$node <- 1:104
+dd2$node <- 1:104 # 104 is the number of tips
+dd2$ML <- MLstates[1:104]
+dd2$colour <- cols_byNode[1:104]
