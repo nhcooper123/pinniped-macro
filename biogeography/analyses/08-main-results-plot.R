@@ -115,19 +115,34 @@ col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#61391
 # base + geom_nodepoint(aes(colour = MLstates), size = 2) 
 
 # Create list of colours, remember to remove non needed states
+# Also need to arrange in alphabetical order
 new_colours <- dff %>%
   arrange(state) %>%
   filter(state != "AH" & state != "BCG", state != "CEF", state != "CF", state != "EFG", state != "F") %>%
   pull(col)
+
+new_states <- dff %>%
+  arrange(state) %>%
+  filter(state != "AH" & state != "BCG", state != "CEF", state != "CF", state != "EFG", state != "F") %>%
+  pull(state)
 
 # Plot 
 area_group_ML_plot <- area_group_plot + geom_nodepoint(aes(colour = MLstates), size = 2) +
   scale_colour_manual(values = new_colours) +
   theme(legend.position = "none")
 
-# replot withbase tree and legend to check colours match properly
+# replot with base tree and legend to check colours match properly
 # base + geom_nodepoint(aes(colour = MLstates), size = 2) +
 # scale_colour_manual(values = new_colours)
+
+# Create legend
+#png(file = "biogeography/outputs/main-legend.png", width = 4000, height = 3100, res = 900)
+plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
+legend("topleft", legend = new_states, 
+       pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 4,
+      col = new_colours)
+mtext("Areas", at = 0.4, cex = 1.1)
+#dev.off()
 
 #------------------
 # Save plot
