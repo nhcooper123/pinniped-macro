@@ -8,6 +8,7 @@
 # Copyright Nicholas J. Matzke
 
 # BEFORE THIS YOU NEED TO RUN 01 to get state lists
+source("biogeography/analyses/01-pinniped-state-list-fix.R")
 
 # Load the packages.
 library(cladoRcpp)
