@@ -102,6 +102,6 @@ cols_byNode <- rangestxt_to_colors(possible_ranges_list_txt,
 #----------------------------------------------
 dd2 <- data.frame(relprobs_matrix_for_internal_states)
 colnames(dd2) <- ranges_list
-dd2$node <- 1:104 # 104 is the number of tips
-dd2$ML <- MLstates[1:104]
-dd2$colour <- cols_byNode[1:104]
+dd2$node <- 106:209 # There are 104 nodes and 105 species
+dd2$ML <- MLstates[106:209] # First node is 106
+dd2$colour <- cols_byNode[106:209]
