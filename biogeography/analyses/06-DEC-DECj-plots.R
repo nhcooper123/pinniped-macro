@@ -8,8 +8,11 @@ library(BioGeoBEARS)
 library(ape)
 library(cladoRcpp)
 
-# Plotting scripts
-# scriptdir <- np(system.file("extdata/a_scripts", package = "BioGeoBEARS"))
+#-----------------------------------------------------------------------
+# Source script with modified BioGeoBEARs plotting function
+#-----------------------------------------------------------------------
+source("biogeography/analyses/modifiedBGBplot.R")
+
 #-------------------
 # Read in the trees
 #------------------
@@ -67,20 +70,83 @@ load("biogeography/outputs/pinnipeds-fossil-DECj_9areas_unlikely.Rdata")
 # resDECj1_extant = extant taxa, impossible and unlikely states removed
 load("biogeography/outputs/pinnipeds-extant-DECj_9areas_unlikely.Rdata")
 
-#-----------------------------------------------------------------------
-# Source script with modified BioGeoBEARs plotting function and colours
-#-----------------------------------------------------------------------
-source("biogeography/analyses/modifiedBGBplot.R")
+#-------------------
+# Colours
+#-------------------
 source("biogeography/analyses/messing-about-with-colours.R")
 
-#--------------------
-# Main results plot
-#--------------------
-pdf("biogeography/outputs/faff.pdf", width = 20, height = 20)
+#-----------------------------------------
+# Raw trees
+#-----------------------------------------
+# All
+#------------
+png(file = "supplemental/figures/all-pinnipeds-tree.png",
+    width = 5000, height = 5000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC, titlecex = 0, plotwhat = "x", statecex = 1, 
+                     tipcex = 0.8, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = TRUE)
+
+dev.off()
+#------------
+# Fossil
+#------------
+png(file = "supplemental/figures/fossil-pinnipeds-tree.png",
+    width = 5000, height = 5000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC_fossil, titlecex = 0, plotwhat = "x", statecex = 1, 
+                     tipcex = 0.8, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = TRUE)
+
+dev.off()
+#------------
+# Extant
+#------------
+png(file = "supplemental/figures/extant-pinnipeds-tree.png",
+    width = 5000, height = 5000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC_extant, titlecex = 0, plotwhat = "x", statecex = 1, 
+                     tipcex = 0.8, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = TRUE)
+
+dev.off()
+
+#-----------------------------------------
+# Plots for appendices
+#-----------------------------------------
+# DEC - impossible
+# 1. ML states at nodes
+# 2. Pies at nodes
+# DECj - impossible
+# 1. ML states at nodes
+# 2. Pies at nodes
+
+# DEC - impossible and unlikely
+# 1. ML states at nodes
+# 2. Pies at nodes
+# DECj - impossible and unlikely
+# 1. ML states at nodes
+# 2. Pies at nodes
+
+# Repeat for fossils and extant only
+#-----------------------------------------
+# All pinnipeds
+#-----------------------------------------
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/all-pinnipeds-DEC-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
 plot_BioGeoBEARS_mod(resDEC, 
                      # title info - cex = 0 suppresses title
-                     analysis_titletxt = "DEC all", titlecex = 0, 
-                     # Plot pies at nodes, and size them
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
                      plotwhat = "text", statecex = 1, 
                      # Size and offset of tip names
                      tipcex = 1, label.offset = 0.2, 
@@ -97,25 +163,375 @@ plot_BioGeoBEARS_mod(resDEC,
                      # colours
                      colors_list_for_states = colour_list_impossible,
                      show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/all-pinnipeds-DEC-impossible-pies.png",
+     width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/all-pinnipeds-DECj-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/all-pinnipeds-DECj-impossible-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#--------------------------
+# Impossible and unlikely removed
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/all-pinnipeds-DEC-unlikely-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1, 
+                     # title info - cex = 0 suppresses title
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
+                     plotwhat = "text", statecex = 1, 
+                     # Size and offset of tip names
+                     tipcex = 1, label.offset = 0.2, 
+                     # Plot states at tips, resize tip states and offset of tip labels
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     # split splits or not?
+                     plotsplits = FALSE,
+                     # Include null ranges?
+                     include_null_range = TRUE, 
+                     # Input data - tree and geography
+                     tr = tree, tipranges = tipranges,
+                     # x label
+                     xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     # colours
+                     colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/all-pinnipeds-DEC-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/all-pinnipeds-DECj-unlikley-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/all-pinnipeds-DECj-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
 
 dev.off()
 
 #--------------------------
-# Make plots for appendices
-#--------------------------
-# All
-pdf(file = "biogeography/outputs/all-pinnipeds-DEC-DECj-plots.pdf", height = 20)
-
-dev.off()
-#------------------------
 # Fossil
-pdf(file = "biogeography/outputs/fossil-pinnipeds-DEC-DECj-plots.pdf", height = 20)
+#--------------------------
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DEC-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
 
+plot_BioGeoBEARS_mod(resDEC_fossil, 
+                     # title info - cex = 0 suppresses title
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
+                     plotwhat = "text", statecex = 1, 
+                     # Size and offset of tip names
+                     tipcex = 1, label.offset = 0.2, 
+                     # Plot states at tips, resize tip states and offset of tip labels
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     # split splits or not?
+                     plotsplits = FALSE,
+                     # Include null ranges?
+                     include_null_range = TRUE, 
+                     # Input data - tree and geography
+                     tr = tree, tipranges = tipranges,
+                     # x label
+                     xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     # colours
+                     colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DEC-impossible-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC_fossil, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
 
 dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DECj-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
 
+plot_BioGeoBEARS_mod(resDECj_fossil,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DECj-impossible-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj_fossil, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#--------------------------
+# Impossible and unlikely removed
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DEC-unlikely-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1_fossil, 
+                     # title info - cex = 0 suppresses title
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
+                     plotwhat = "text", statecex = 1, 
+                     # Size and offset of tip names
+                     tipcex = 1, label.offset = 0.2, 
+                     # Plot states at tips, resize tip states and offset of tip labels
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     # split splits or not?
+                     plotsplits = FALSE,
+                     # Include null ranges?
+                     include_null_range = TRUE, 
+                     # Input data - tree and geography
+                     tr = tree, tipranges = tipranges,
+                     # x label
+                     xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     # colours
+                     colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DEC-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1_fossil, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DECj-unlikley-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1_fossil,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/fossil-pinnipeds-DECj-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1_fossil, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
 #------------------------
 # Extant
-pdf(file = "biogeography/outputs/extant-pinnipeds-DEC-DECj-plots.pdf", height = 20)
+#--------------------------
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DEC-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC_extant, 
+                     # title info - cex = 0 suppresses title
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
+                     plotwhat = "text", statecex = 1, 
+                     # Size and offset of tip names
+                     tipcex = 1, label.offset = 0.2, 
+                     # Plot states at tips, resize tip states and offset of tip labels
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     # split splits or not?
+                     plotsplits = FALSE,
+                     # Include null ranges?
+                     include_null_range = TRUE, 
+                     # Input data - tree and geography
+                     tr = tree, tipranges = tipranges,
+                     # x label
+                     xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     # colours
+                     colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DEC-impossible-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC_extant, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DECj-impossible-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj_extant,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DECj-impossible-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj_extant, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#--------------------------
+# Impossible and unlikely removed
+# DEC
+# ML states at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DEC-unlikely-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1_extant, 
+                     # title info - cex = 0 suppresses title
+                     titlecex = 0, 
+                     # Plot ML states at nodes, and size them
+                     plotwhat = "text", statecex = 1, 
+                     # Size and offset of tip names
+                     tipcex = 1, label.offset = 0.2, 
+                     # Plot states at tips, resize tip states and offset of tip labels
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     # split splits or not?
+                     plotsplits = FALSE,
+                     # Include null ranges?
+                     include_null_range = TRUE, 
+                     # Input data - tree and geography
+                     tr = tree, tipranges = tipranges,
+                     # x label
+                     xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     # colours
+                     colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC
+# Pies at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DEC-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDEC1_extant, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
+
+dev.off()
+#-------------------
+# DEC+J
+# ML states at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DECj-unlikley-MLstates.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1_extant,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+                     tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, 
+                     tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
+                     colors_list_for_states = colour_list_impossible, show.tip.label = FALSE)
+dev.off()
+#-------------------
+# DEC+J
+# Pies at nodes
+png(file = "supplemental/figures/extant-pinnipeds-DECj-unlikely-pies.png",
+    width = 6000, height = 6000, res = 300)
+
+plot_BioGeoBEARS_mod(resDECj1_extant, titlecex = 0, plotwhat = "pie", statecex = 1, 
+                     tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
+                     plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
+                     xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
+                     show.tip.label = FALSE)
 
 dev.off()
