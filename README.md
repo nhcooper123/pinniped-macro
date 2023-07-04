@@ -11,7 +11,7 @@ To cite the paper:
 >  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Macroevolutionary patterns of pinnipeds. in prep.
 
 To cite this repo: 
->  
+>  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1.
 
 ![alt text](https://github.com/nhcooper123/pinniped-macro/raw/main/figures/example.png)
 
@@ -44,15 +44,22 @@ If you use the data please cite as follows:
 R-scripts 01-05 are modified versions of BioGeoBEARS R script(s) that can be found at [http://phylo.wikidot.com/biogeobears](http://phylo.wikidot.com/biogeobears). Copyright Nicholas J. Matzke. Please cite BioGeoBEARS if you use these scripts.
 
 1. **00-prepare-trees** removes species without geographical information from the trees.
-1. **01-pinniped-state-list-fix.R** modifies the states allowed for each analysis. THIS NEEDS TO BE RUN BEFORE SCRIPT 02.
+1. **01-pinniped-state-list-fix.R** modifies the states allowed for each analysis. THIS NEEDS TO BE RUN BEFORE SCRIPT 02. It is sourced in most other scripts to prevent you forgetting.
 1. **02A-fit-DEC-DECj** fits DEC and DECj models using BioGeoBEARS for all taxa removing impossible states.
 1. **02B-fit-DEC-DECj-unlikely** fits DEC and DECj models using BioGeoBEARS for all taxa removing impossible and unlikely states.
 1. **03A-fit-DEC-DECj_fossil** fits DEC and DECj models using BioGeoBEARS for fossil taxa removing impossible states.
 1. **03B-fit-DEC-DECj-unlikely_fossil** fits DEC and DECj models using BioGeoBEARS for fossil taxa removing impossible and unlikely states.
 1. **04A-fit-DEC-DECj_extant** fits DEC and DECj models using BioGeoBEARS for extant taxa removing impossible states.
 1. **04B-fit-DEC-DECj-unlikely_extant** fits DEC and DECj models using BioGeoBEARS for extant taxa removing impossible and unlikely states.
-1.**05-DEC-DECj-results.R** extracts results from DEC and DECj models for tables. 
+1. **05-DEC-DECj-results.R** extracts results from DEC and DECj models for tables. 
+1. **06-DEC-DECj-plots.R** creates all BioGeoBEARS plots for the ESM.
+1. **07-Extract-BGB-results-for-plotting.R** extracts results from BioGeoBEARS results objects for making the main publication plot.
+1. **08-main-results-plot.R** code for the nice main publication plot.
+1. **09-worldmap-for-legend.R** quick snippet to get a world map for the legend.
+1. **messing-about-with-colours.R** attempts to set nice colour palettes for scripts 06, 07 and 08 which call it.
+1. **modifiedBGBplot.R** modified version of BioGeoBEARS plotting function to have more control over plots in 06.
 
+* The folder `biogeography/outputs` contains the main figures and tables. ESM figures/tables are in the higher level `/supplemental` folder.
 
 -------
 
@@ -74,7 +81,7 @@ If you use the data please cite as follows:
 * `/figures` contains the figures.
 * `/outputs` contains the tables.
 * `/img` contains the silhouettes from from `PhyloPic.org` needed for plotting. Contributed by: XXX
-* `/manuscript` contains the manuscript materials in LaTeX format.
+* `/supplemental` contains the ESM files/figures and tables in LaTeX format.
 
 -------
 ## Session Info
