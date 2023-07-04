@@ -1,0 +1,338 @@
+%-------------------------------------------------------------------------------
+% Preamble
+%-------------------------------------------------------------------------------
+
+\documentclass[a4paper, 12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage[osf]{mathpazo} % palatino
+%\usepackage[round]{natbib} % author-year citations
+\usepackage[superscript,biblabel,nomove]{cite} % for superscript citations
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{parskip} 
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{float}
+\usepackage{url}
+\usepackage{array}
+
+\pagenumbering{arabic}  
+\linespread{1.3}
+
+% figure numbering override
+\renewcommand*{\thefigure}{A\arabic{figure}} % make Fig A1 not Fig 1
+\renewcommand*{\thetable}{A\arabic{table}} % make Table A1 not Table 1
+
+%-------------------------------------------------------------------------------
+% Title page information
+%-------------------------------------------------------------------------------
+
+\title{Supplementary Materials from: \textit{Pinniped paper title}}
+
+\author{}
+
+%\author{Travis Park, Gustavo Burin, Daniela Lazo-Cancino, Joseph PG Rees, James P Rule, Graham J Slater and Natalie Cooper}
+
+\date{}
+
+% End of preamble
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\parindent = 1.5em
+\addtolength{\parskip}{.3em}
+
+%-------------------------------------------------------------------------------
+% Supplementary materials
+%-------------------------------------------------------------------------------
+% Diversification
+%-----------------------------------------------------------------------------------
+\newpage
+\section{Diversification}
+\subsection{Supplementary results}
+
+% gustavo's stuff
+
+%-------------------------------------------------------------------------------
+% Biogeography
+%-----------------------------------------------------------------------------------
+\newpage
+\begin{landscape}
+\section{Biogeographical history}
+\subsection{Supplementary tables}
+
+\input{figures/table-biogeo-data.tex}
+
+\newpage
+\input{figures/table-ocean-pathways.tex}
+
+\newpage
+\input{figures/table-states.tex}
+\end{landscape}
+%----------------------------------------------
+\subsection{Supplementary results}
+
+The plots below show the detailed results from the BioGeoBEARS analyses \cite{matzke2013probabilistic}. Models are either the dispersal-extinction-cladogenesis (DEC) model \cite{ree2008maximum} or the DEC+J model \cite{matzke2014model}. 
+The nine different areas used were: (A) Northern Pacific Ocean, (B) Eastern South Pacific Ocean, (C) Australasian coastal waters, (D) Northern Atlantic Ocean, (E) Southern Atlantic Ocean, (F) Indian Ocean, (G) Southern Ocean, (H) Arctic Ocean, and (I) Paratethys/Mediterranean Ocean. Note that we excluded \textit{Pusa caspica} (Caspian seal) and \textit{Pusa sibirica} (Lake Baikal seal) because of their isolated biogeography (they are only found in the Caspian sea and Lake Baikal respectively). 
+Legends and taxon names have been removed from Figures X-X for readability. 
+A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in Figure \ref{fig-all-tree} for all taxa, Figure %\ref{fig-fossil-tree} 
+for fossil taxa only, and Figure %\ref{fig-extant-tree} 
+for extant taxa only.
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/BGB-legend.png}
+  \caption{Legend for plots.}
+  \label{fig-legend}
+\end{figure} 
+
+%-----------------------------------------------------------------------------------
+\subsubsection{All pinnipeds}
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/all-pinnipeds-tree.png}
+  \caption{Phylogeny of all pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
+  \label{fig-all-tree}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-impossible-MLstates.png}
+  \caption{All pinnipeds, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
+  \label{fig-all-dec-ml}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-impossible-pies.png}
+  \caption{All pinnipeds, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
+  \label{fig-all-dec-pie}
+\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-impossible-MLstates.png}
+%  \caption{All pinnipeds, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-all-decj-ml}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-impossible-pies.png}
+%  \caption{All pinnipeds, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-all-decj-pie}
+%\end{figure} 
+ 
+%-----------------------------------------------------------------------------------
+% unlikely
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-unlikely-MLstates.png}
+%  \caption{All pinnipeds, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-all-dec-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-unlikely-pies.png}
+%  \caption{All pinnipeds, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-all-dec-pie-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-unlikely-MLstates.png}
+%  \caption{All pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-all-decj-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-unlikely-pies.png}
+%  \caption{All pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-all-decj-pie-unlikely}
+%\end{figure} 
+
+%-----------------------------------------------------------------------------------
+\subsubsection{Fossil pinnipeds only}
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-tree.png}
+%  \caption{Phylogeny of fossil pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
+%  \label{fig-fossil-tree}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-MLstates.png}
+%  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-fossil-dec-ml}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-pies.png}
+%  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-fossil-dec-pie}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-MLstates.png}
+%  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-fossil-decj-ml}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-pies.png}
+%  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-fossil-decj-pie}
+%\end{figure} 
+ 
+%-----------------------------------------------------------------------------------
+% fossil + unlikely
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-MLstates.png}
+%  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-fossil-dec-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-pies.png}
+%  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-fossil-dec-pie-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-MLstates.png}
+%  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-fossil-decj-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-pies.png}
+%  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-fossil-decj-pie-unlikely}
+%\end{figure} 
+%-----------------------------------------------------------------------------------
+\subsubsection{Extant pinnipeds only}
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-tree.png}
+%  \caption{Phylogeny of extant pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
+%  \label{fig-extant-tree}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-impossible-MLstates.png}
+%  \caption{Extant pinnipeds only, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
+%  \label{fig-extant-dec-ml}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-impossible-pies.png}
+ % \caption{Extant pinnipeds only, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-extant-dec-pie}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+ % \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-impossible-MLstates.png}
+ % \caption{Extant pinnipeds only, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
+ % \label{fig-extant-decj-ml}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+ % \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-impossible-pies.png}
+ % \caption{Extant pinnipeds only, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
+ % \label{fig-extant-decj-pie}
+%\end{figure} 
+ 
+%-----------------------------------------------------------------------------------
+% unlikely + extant
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-unlikely-MLstates.png}
+ % \caption{Extant pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+ % \label{fig-extant-dec-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-unlikely-pies.png}
+%  \caption{extant pinnipeds, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-extant-dec-pie-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-unlikely-MLstates.png}
+%  \caption{Extant pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+ % \label{fig-extant-decj-ml-unlikely}
+%\end{figure} 
+
+% figure
+%\begin{figure}[H]
+% \centering
+%  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-unlikely-pies.png}
+% \caption{extant pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+%  \label{fig-extant-decj-pie-unlikely}
+%\end{figure} 
+
+%-------------------------------------------------------------------------------
+% Refs
+%----------------------------------------
+\newpage
+\section{Supplementary References}
+ 
+\bibliography{pinnipeds}
+\bibliographystyle{vancouver}
+
+\end{document}
