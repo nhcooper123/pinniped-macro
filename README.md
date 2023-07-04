@@ -37,7 +37,7 @@ Code for the biogeographical analyses is within the `biogeography/` folder
 All data are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq), but also within the  `data/`  and `raw-data/` folders.
 
 If you use the data please cite as follows: 
->  Travis Park; Gustavo Burin; Graham J Slater; Natalie Cooper (2022). Data from the "Back to the water" project [Data set]. Natural History Museum. 
+>  Travis Park; Gustavo Burin; Graham J Slater; Natalie Cooper (2022). Data from the "Back to the water" project [Data set]. Natural History Museum. https://doi.org/10.5519/vmbrpkuq.
 
 ### Analyses
 
