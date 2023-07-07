@@ -7,9 +7,8 @@
 # R script that can be found at http://phylo.wikidot.com/biogeobears
 # Copyright Nicholas J. Matzke
 
-# BEFORE THIS YOU NEED TO RUN 01B FOSSILS to get state lists
-# This differs from 01A by the fact time bin 4 must include Parathethys
-source("biogeography/analyses/01B-pinniped-state-list-fix-fossils.R")
+# BEFORE THIS YOU NEED TO RUN 01 to get state lists
+source("biogeography/analyses/01-pinniped-state-list-fix.R")
 
 # Load the packages.
 library(cladoRcpp)
@@ -78,14 +77,14 @@ BioGeoBEARS_run_object$calc_ancprobs <- TRUE    # get ancestral states from opti
 
 # Setup state lists
 # Impossible removed only
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7Af
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8Af
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7A
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8A
 
 # Check inputs. Read the error messages if you get them!
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
@@ -158,7 +157,7 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","type"] = "free
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","init"] = jstart
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","est"] = jstart
 
-# Setup state lists (comment in/out depending on analysis being run)
+# Setup state lists
 # Impossible removed only
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A

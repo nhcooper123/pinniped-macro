@@ -158,7 +158,7 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","type"] = "free
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","init"] = jstart
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["j","est"] = jstart
 
-# Setup state lists (comment in/out depending on analysis being run)
+# Setup state lists
 # Impossible removed only
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1A
 BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2A
