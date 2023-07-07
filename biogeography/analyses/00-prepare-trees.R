@@ -4,7 +4,7 @@
 library(ape)
 
 # Read in full tree
-tree <- read.tree("biogeography/raw-data/pinnipedia_mcc_clean.tre")
+tree <- read.tree("data/pinniped_map.tre")
 
 #-----------------------------------
 # 9 areas tree
