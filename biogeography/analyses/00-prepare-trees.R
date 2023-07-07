@@ -4,7 +4,7 @@
 library(ape)
 
 # Read in full tree
-tree <- read.tree("data/pinniped_map.tre")
+tree <- read.tree("data/median_tree.tre")
 
 # Replace 0 length branches with 0.001
 for(i in 1:length(tree$edge.length)){
