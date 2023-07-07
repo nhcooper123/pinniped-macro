@@ -7,7 +7,7 @@ Arctocephalus_townsendi	100000000
 Arctocephalus_gazella	000000100
 Lobodon_carcinophaga	000000100
 Hydrurga_leptonyx	000000100
-Eumetopias_jubata	100000000
+Eumetopias_jubatus	100000000
 Mirounga_leonina	011000100
 Phoca_largha	100000010
 Ommatophoca_rossii	000000100
