@@ -143,8 +143,8 @@ BioGeoBEARS_run_object$calc_ancprobs = TRUE    # get ancestral states from optim
 # Set up DEC+J model
 # Get the ML parameter values from the 2-parameter nested model
 # (this will ensure that the 3-parameter model always does at least as good)
-dstart <- resDEC_fossil$outputs@params_table["d","est"]
-estart <- resDEC_fossil$outputs@params_table["e","est"]
+dstart <- resDEC1_fossil$outputs@params_table["d","est"]
+estart <- resDEC1_fossil$outputs@params_table["e","est"]
 jstart <- 0.0001
 
 # Input starting values for d, e
