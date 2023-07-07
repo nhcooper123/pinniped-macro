@@ -62,7 +62,7 @@ ranges_list_1A <- ranges_list[keep1A]
 states_list_0based_1A <- states_list_0based[keep1A]
 
 # Identify non-adjacent ranges (impossible and unlikely)
-nonadjacent1B <- c("AD","FI", "AE", "AF", "AG", "AI", "BD", "BE", "BF", "BH", 
+nonadjacent1B <- c("AD","FI", "AE", "AF", "AG", "AI", "BD", "BF", "BH", 
                    "BI", "CD", "CE", "CH", "CI", "DF", "DG", "EI", "FH", "GH", "GI")
 # Extract from range list
 keep1B <- ranges_list %in% nonadjacent1B == FALSE
