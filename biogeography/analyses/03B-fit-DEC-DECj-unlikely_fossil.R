@@ -7,9 +7,8 @@
 # R script that can be found at http://phylo.wikidot.com/biogeobears
 # Copyright Nicholas J. Matzke
 
-# BEFORE THIS YOU NEED TO RUN 01B FOSSILS to get state lists
-# This differs from 01A by the fact time bin 4 must include Parathethys
-source("biogeography/analyses/01B-pinniped-state-list-fix-fossils.R")
+# BEFORE THIS YOU NEED TO RUN 01 to get state lists
+source("biogeography/analyses/01-pinniped-state-list-fix.R")
 
 # Load the packages.
 library(cladoRcpp)
@@ -78,14 +77,14 @@ BioGeoBEARS_run_object$calc_ancprobs <- TRUE    # get ancestral states from opti
 
 # Setup state lists
 # Impossible and unlikely removed
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7Bf
-BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8Bf
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[1]] = states_list_0based_1B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[2]] = states_list_0based_2B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[3]] = states_list_0based_3B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[4]] = states_list_0based_4B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[5]] = states_list_0based_5B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[6]] = states_list_0based_6B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[7]] = states_list_0based_7B
+BioGeoBEARS_run_object$lists_of_states_lists_0based[[8]] = states_list_0based_8B
 
 # Check inputs. Read the error messages if you get them!
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
