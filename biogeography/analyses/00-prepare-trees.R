@@ -6,6 +6,12 @@ library(ape)
 # Read in full tree
 tree <- read.tree("data/pinniped_map.tre")
 
+# Replace 0 length branches with 0.001
+for(i in 1:length(tree$edge.length)){
+  if(tree$edge.length[i] == 0){
+    tree$edge.length[i] <- 0.001
+  }
+}
 #-----------------------------------
 # 9 areas tree
 #-----------------------------------
@@ -41,3 +47,4 @@ tree3 <- drop.tip(tree, setdiff(tree$tip.label, geo3$X71))
 
 # Save tree
 write.tree(tree3, "biogeography/data/pinniped-tree-fossil_9areas.tre")
+
