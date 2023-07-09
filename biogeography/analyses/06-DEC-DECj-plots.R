@@ -252,7 +252,7 @@ dev.off()
 #-------------------
 # DEC+J
 # ML states at nodes
-png(file = "supplemental/figures/all-pinnipeds-DECj-unlikley-MLstates.png",
+png(file = "supplemental/figures/all-pinnipeds-DECj-unlikely-MLstates.png",
     width = 6000, height = 6000, res = 300)
 
 plot_BioGeoBEARS_mod(resDECJ1,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
@@ -387,7 +387,7 @@ dev.off()
 #-------------------
 # DEC+J
 # ML states at nodes
-png(file = "supplemental/figures/fossil-pinnipeds-DECj-unlikley-MLstates.png",
+png(file = "supplemental/figures/fossil-pinnipeds-DECj-unlikely-MLstates.png",
     width = 6000, height = 6000, res = 300)
 
 plot_BioGeoBEARS_mod(resDECJ1_fossil,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
@@ -521,7 +521,7 @@ dev.off()
 #-------------------
 # DEC+J
 # ML states at nodes
-png(file = "supplemental/figures/extant-pinnipeds-DECj-unlikley-MLstates.png",
+png(file = "supplemental/figures/extant-pinnipeds-DECj-unlikely-MLstates.png",
     width = 6000, height = 6000, res = 300)
 
 plot_BioGeoBEARS_mod(resDECJ1_extant,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
