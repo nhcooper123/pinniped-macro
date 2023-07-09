@@ -114,6 +114,8 @@ col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#61391
 # Now run this to see what states require colours
 # base + geom_nodepoint(aes(colour = MLstates), size = 2) 
 
+#### ABCG, AD, DI (noF)
+
 # Create list of colours, remember to remove non needed states
 # Also need to arrange in alphabetical order
 new_colours <- dff %>%

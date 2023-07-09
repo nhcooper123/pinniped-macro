@@ -1,4 +1,4 @@
-105	9	(A B C D E F G H I)
+120	9	(A B C D E F G H I)
 Otaria_byronia	010010000
 Histriophoca_fasciata	100000010
 Neomonachus_schauinslandi	100000000
@@ -57,8 +57,8 @@ Enaliarctos_mitchelli	100000000
 Enaliarctos_tedfordi	100000000
 Eodesmus_condoni	100000000
 Eomonachus_belegaerensis	001000000
-Eotaria_citrica			100000000
-Eotaria_crypta			100000000
+Eotaria_citrica		100000000
+Eotaria_crypta		100000000
 Frisiphoca_aberratum	000100000
 Frisiphoca_affine	000100000
 Gomphotaria_pugnax	100000000
@@ -84,7 +84,7 @@ Pontolis_barroni	100000000
 Pontolis_kohnoi		100000000
 Pontolis_magnus		100000000
 Potamotherium_vallentoni	000100000
-Praepusa_boeska			000000001
+Praepusa_boeska		000000001
 Praepusa_magyaricus	000000001
 Praepusa_pannonica	000100001
 Praepusa_vindobonensis	000000001
@@ -104,3 +104,18 @@ Thalassoleon_macnallyae	100000000
 Thalassoleon_mexicanus	100000000
 Titanotaria_orangensis	100000000
 Valenictus_chulavistensis	100000000
+Monachini_indet		001000000
+Pliophoca_etrusca_USNM		000100000
+Homiphoca_sp		000010000
+cf_Miroungini_indet		001000000     
+aff_Homiphoca_capensis		000100000
+Pusa_caspica		000000001                
+Allodesmus_sp_cf_sadoensis		100000000
+Atopotarus_courseni		100000000
+Desmatophocidae_indet		100000000    
+Pithanotaria_starri		100000000      
+cf_Thalassoleon		100000000          
+Pontolis_cf		100000000           
+Pelagiarctos_sp		100000000     
+Odobenidae_indet		100000000         
+Pinnarctidion_iverseni		100000000
