@@ -96,7 +96,7 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 resfn_extant <- "biogeography/outputs/pinnipeds-extant-DEC_9areas_impossible.Rdata"
 resDEC_extant <- bears_optim_run(BioGeoBEARS_run_object)
 resDEC_extant    
-save(resDEC_extant, file = resfn)
+save(resDEC_extant, file = resfn_extant)
 
 #----------------------------------
 # SETUP DEC+J
