@@ -112,7 +112,7 @@ BioGeoBEARS_run_object$min_branchlength <- 0.000001
 BioGeoBEARS_run_object$include_null_range <- TRUE    
 
 # time-stratified analysis:
-BioGeoBEARS_run_object$timesfn <- "biogeography/data/timeperiods-fossil_9areas.txt"
+BioGeoBEARS_run_object$timesfn <- "biogeography/data/timeperiods-all_9areas.txt"
 #BioGeoBEARS_run_object$dispersal_multipliers_fn = "time_strat_disp.txt"
 #BioGeoBEARS_run_object$areas_allowed_fn = "areas_allowed.txt"
 #BioGeoBEARS_run_object$areas_adjacency_fn = "areas_adjacency.txt"
