@@ -62,10 +62,10 @@ groups <- subset(groups, matches == 0)
 # Note that ggtree does something odd to node numbering meaning these don't all
 # match 100%. Check using
 # ggtree(tree) + geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab()
-phocid <- 116
-otarid <- 177
-walrus <- 155
-desmo <- 201
+phocid <- 117
+otarid <- 163
+walrus <- 187
+desmo <- 154
 
 # Make df of numbers and names
 df <- data.frame(node = c(phocid, otarid, walrus, desmo),
@@ -95,7 +95,7 @@ area_plot <-
 # Add clade labels
 area_group_plot <- 
   area_plot + geom_cladelab(data = df, mapping = aes(node = node, label = name),
-              offset = c(22,22,22,32), offset.text = 1)
+              offset = c(22,32,22,22), offset.text = 1)
   
 #-------------------
 # Add ML states
