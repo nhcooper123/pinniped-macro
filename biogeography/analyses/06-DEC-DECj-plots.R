@@ -183,7 +183,7 @@ dev.off()
 png(file = "supplemental/figures/all-pinnipeds-DECj-impossible-MLstates.png",
     width = 6000, height = 6000, res = 300)
 
-plot_BioGeoBEARS_mod(resDECj,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+plot_BioGeoBEARS_mod(resDECJ,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
                      tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
                      plotsplits = FALSE, include_null_range = TRUE, 
                      tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
@@ -195,7 +195,7 @@ dev.off()
 png(file = "supplemental/figures/all-pinnipeds-DECj-impossible-pies.png",
     width = 6000, height = 6000, res = 300)
 
-plot_BioGeoBEARS_mod(resDECj, titlecex = 0, plotwhat = "pie", statecex = 1, 
+plot_BioGeoBEARS_mod(resDECJ, titlecex = 0, plotwhat = "pie", statecex = 1, 
                      tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
                      plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
                      xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
@@ -249,7 +249,7 @@ dev.off()
 png(file = "supplemental/figures/all-pinnipeds-DECj-unlikley-MLstates.png",
     width = 6000, height = 6000, res = 300)
 
-plot_BioGeoBEARS_mod(resDECj1,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
+plot_BioGeoBEARS_mod(resDECJ1,titlecex = 0, plotwhat = "text", statecex = 1, tipcex = 1, label.offset = 0.2, 
                      tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
                      plotsplits = FALSE, include_null_range = TRUE, 
                      tr = tree, tipranges = tipranges, xlab = "Time (Ma)", simplify_piecharts = TRUE, 
@@ -261,7 +261,7 @@ dev.off()
 png(file = "supplemental/figures/all-pinnipeds-DECj-unlikely-pies.png",
     width = 6000, height = 6000, res = 300)
 
-plot_BioGeoBEARS_mod(resDECj1, titlecex = 0, plotwhat = "pie", statecex = 1, 
+plot_BioGeoBEARS_mod(resDECJ1, titlecex = 0, plotwhat = "pie", statecex = 1, 
                      tipcex = 1, label.offset = 0.2, tipboxes_TF = TRUE, tip_stateshape = 22, tip_statecex = 3, tip_stateadj = 0.5,
                      plotsplits = FALSE, include_null_range = TRUE, tr = tree, tipranges = tipranges,
                      xlab = "Time (Ma)", simplify_piecharts = FALSE, colors_list_for_states = colour_list_impossible,
