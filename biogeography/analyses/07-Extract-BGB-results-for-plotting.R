@@ -21,8 +21,8 @@ tree <- read.tree("biogeography/data/pinniped-tree-all_9areas.tre")
 # Read in outputs
 #### MODIFY WITH FINAL BEST MODEL
 #------------------
-load("biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata")
-results_object <- resDEC    
+load("biogeography/outputs/pinnipeds-all-DECJ_9areas_impossible.Rdata")
+results_object <- resDECJ    
 #-----------------------------------------------
 # Read in the geography files and get tip ranges
 #-----------------------------------------------
