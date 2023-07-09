@@ -93,7 +93,7 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 # Run DEC model and save results
 #----------------------------------
 # Impossible and unlikely removed
-resfn1_fossil <- "biogeography/outputs/pinnipeds-fossil-DEC_9areas_unlikely.Rdata"
+resfn1_fossil <- "biogeography/outputs/pinnipeds-fossil-DEC_9areas_neither.Rdata"
 resDEC1_fossil <- bears_optim_run(BioGeoBEARS_run_object)
 resDEC1_fossil    
 save(resDEC1_fossil, file = resfn1_fossil)
