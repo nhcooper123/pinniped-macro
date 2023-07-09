@@ -47,11 +47,11 @@ load("biogeography/outputs/pinnipeds-fossil-DEC_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DEC_9areas_impossible.Rdata")
 
 # resDEC1 = all taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-all-DEC_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-all-DEC_9areas_neither.Rdata")
 # resDEC1_fossil = fossil taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-fossil-DEC_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-fossil-DEC_9areas_neither.Rdata")
 # resDEC1_extant = extant taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-extant-DEC_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-extant-DEC_9areas_neither.Rdata")
 
 #-------
 # DECj
@@ -64,11 +64,11 @@ load("biogeography/outputs/pinnipeds-fossil-DECj_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DECj_9areas_impossible.Rdata")
 
 # resDECj1 = all taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-all-DECj_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-all-DECj_9areas_neither.Rdata")
 # resDECj1_fossil = fossil taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-fossil-DECj_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-fossil-DECj_9areas_neither.Rdata")
 # resDECj1_extant = extant taxa, impossible and unlikely states removed
-load("biogeography/outputs/pinnipeds-extant-DECj_9areas_unlikely.Rdata")
+load("biogeography/outputs/pinnipeds-extant-DECj_9areas_neither.Rdata")
 
 #-------------------
 # Colours
