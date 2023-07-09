@@ -21,19 +21,19 @@ for(i in 1:length(shifts.prob)){
 
     summary(edata.pinnip)
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_speciation_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_speciation_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
     tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
     dev.off()
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_extinction_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_extinction_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
     tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
     dev.off()
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_netdiv_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_netdiv_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
     tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
@@ -42,7 +42,7 @@ for(i in 1:length(shifts.prob)){
     css <- credibleShiftSet(edata.pinnip, expectedNumberOfShifts = shifts.prob[i])
     summary(css)
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/css_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/css_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plot.credibleshiftset(css, lwd = 2, xlim = c(0, 45));axisPhylo()#;tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     dev.off()
 
@@ -50,15 +50,15 @@ for(i in 1:length(shifts.prob)){
     ## plot.bammdata(best, lwd = 2, legend = TRUE, xlim = c(0, 45));axisPhylo();tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     ## addBAMMshifts(best, cex = 2.5)
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_speciation_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_speciation_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, ratetype = "speciation", intervalCol = "#CC6677", avgCol = "#CC6677")
     dev.off()
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_extinction_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_extinction_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, ratetype = "extinction", intervalCol = "#CC6677", avgCol = "#CC6677")
     dev.off()
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_netdiv_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_netdiv_pinnipedia_noanc_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, ratetype = "netdiv", intervalCol = "#CC6677", avgCol = "#CC6677")
     abline(h = 0, lwd = 2, lty = 2, col = "grey")
     dev.off()
@@ -90,7 +90,7 @@ for(i in 1:length(shifts.prob)){
 
     col.plots <- c("#332288", "#44AA99", "#DDCC77", "#882255", "#CC6677")
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_speciation_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_speciation_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, intervalCol = NA, avgCol = col.plots[5], ylim = c(0, 0.9), lwd = 5)
     plotRateThroughTime(edata.pinnip, node = odob.node, nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
     plotRateThroughTime(edata.pinnip, node = otar.node, nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
@@ -100,7 +100,7 @@ for(i in 1:length(shifts.prob)){
     dev.off()
 
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_extinction_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_extinction_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, intervalCol = NA, ratetype = "extinction", avgCol = col.plots[5], ylim = c(0, 0.9), lwd = 5)
     plotRateThroughTime(edata.pinnip, node = odob.node, ratetype = "extinction", nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
     plotRateThroughTime(edata.pinnip, node = otar.node, ratetype = "extinction", nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
@@ -110,7 +110,7 @@ for(i in 1:length(shifts.prob)){
     dev.off()
 
 
-    pdf(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_netdiv_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".pdf")), width = 9, height = 9)
+    png(here::here(paste0("diversification/outputs/figs/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_netdiv_pinnipedia_noanc_per_family_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
     plotRateThroughTime(edata.pinnip, intervalCol = NA, ratetype = "netdiv", avgCol = col.plots[5], ylim = c(-0.1, 0.4), lwd = 5)
     plotRateThroughTime(edata.pinnip, node = odob.node, ratetype = "netdiv", nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
     plotRateThroughTime(edata.pinnip, node = otar.node, ratetype = "netdiv", nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
