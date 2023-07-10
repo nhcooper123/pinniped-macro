@@ -61,20 +61,25 @@ groups <- subset(groups, matches == 0)
 # Get node numbers
 # Note that ggtree does something odd to node numbering meaning these don't all
 # match 100%. Check using
-# ggtree(tree) + geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab()
-phocid <- 117
-otarid <- 163
-walrus <- 187
-desmo <- 154
+# ggtree(tree) + geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab(size = 2)
+phocid <- 159
+otarid <- 187
+walrus <- 213
+desmo <- 175
+mona <- 134
+dev <- 174
 
 # Make df of numbers and names
-df <- data.frame(node = c(phocid, otarid, walrus, desmo),
-                 name = c("Phocidae", "Otariidae", "Odobenidae", "Desmatophocidae"))
+df <- data.frame(node = c(phocid, otarid, walrus, desmo, mona, dev),
+                 name = c("Phocinae", "Otariidae", "Odobenidae", "Desmatophocidae", "Monachinae", "Devinophocinae"))
 
 #-----------------------------
 # Plot tree with areas at tips
 #-----------------------------
 # Make the tree base
+
+#stem, odoben, otarid, desm, devi, phoci, monc
+
 base <- 
   ggtree(tree) +
   xlim(0,100) +
@@ -95,8 +100,9 @@ area_plot <-
 # Add clade labels
 area_group_plot <- 
   area_plot + geom_cladelab(data = df, mapping = aes(node = node, label = name),
-              offset = c(22,32,22,22), offset.text = 1)
-  
+              offset = c(22,22,35.2,32.1,22,22), offset.text = 1)
+
+##### works to here #####
 #-------------------
 # Add ML states
 # Need to get results from BGB
@@ -104,9 +110,7 @@ source("biogeography/analyses/07-Extract-BGB-results-for-plotting.R")
 #-------------------------------------------------
 # Need to first fix the colours so they are in alphabetical order
 # Take the legend code to make dff
-dff <- data.frame(state = c("A", "B", "C", "D", "E", "F", "G", "H", "I", 
-  "AB", "AC", "AD", "AH", "BC", "BE", "CF", "DG", "DH", "DI", "EI",
-  "ABC", "ADH", "BCF", "BCG", "BDE", "CDI", "CEF", "EFG", "ABCG"), 
+dff <- data.frame(state = c("A", "B", "C", "D", "E", "F", "G", "H", "I", ), 
 col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",
         "#732950","#4B0082", "#0000ff", "#00FFAA", "#FFED80", "#FF5500", "#FF3990", "#FFF333","#732982","#00AAFF","#AA718E",
         "#558080","#8EAA39", "#6A40AA","#2A6AEA", "#235347", "#6A6AAA", "#FFCC00","#FFA500","#800000" ))
@@ -159,24 +163,29 @@ ggsave(area_group_ML_plot, file = "biogeography/outputs/biogeography-nice-figure
 # Needs to be living if possible
 focal_species <- c("Arctocephalus australis", "Phoca vitulina", 
                    "Odobenus rosmarus", "Allodesmus demerei", 
-                   "Potamotherium vallentoni")
+                   "Potamotherium vallentoni", "Devinophoca claytoni", 
+                   "Monachus monachus")
 
 # Remove all other taxa from the tree
 tree_basic <- drop.tip(tree, setdiff(tree$tip.label, focal_species))
 
 # Rename with group names
 tree_basic$tip.label <- gsub("Arctocephalus australis", "Otariidae", tree_basic$tip.label) 
-tree_basic$tip.label <- gsub("Phoca vitulina", "Phocidae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Phoca vitulina", "Phocinae", tree_basic$tip.label) 
 tree_basic$tip.label <- gsub("Odobenus rosmarus", "Odobenidae", tree_basic$tip.label) 
 tree_basic$tip.label <- gsub("Allodesmus demerei", "Desmatophocidae", tree_basic$tip.label) 
 tree_basic$tip.label <- gsub("Potamotherium vallentoni", "stem", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Devinophoca claytoni", "Devinophocinae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Monachus monachus", "Monachinae", tree_basic$tip.label) 
+
+ggtree(tree_basic) + geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab(size = 2)
 
 basic_tree <-
-  ggtree(tree_basic, branch.length = "none") +
-  xlim(-1,8) +
+  ggtree(tree_basic, branch.length = "none") %>% rotate(8) %>% rotate(13) %>% rotate(12) +
+  xlim(-2,10) +
   geom_tiplab(geom = "text", size = 6) +
-  geom_rootedge(rootedge = 1)
-  
+  geom_rootedge(rootedge = 1) 
+  #+ geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab(size = 2)
 
 #------------------------------
 # Add pies
