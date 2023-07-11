@@ -344,11 +344,25 @@ ggsave(inset_pies_DECJ_extant, file = "biogeography/outputs/biogeography-inset-e
 
 # Plot all together
 library(patchwork)
+all <-
 (inset_pies_DEC_all + inset_pies) /
 (inset_pies_DEC_fossil + inset_pies_DECJ_fossil) /
 (inset_pies_DEC_extant + inset_pies_DECJ_extant) + plot_annotation(tag_levels = "A")
 
+ggsave(all, file = "biogeography/outputs/biogeography-insets-all.png", 
+       width = 10, height = 10, dpi = 900 )
 
+dff <- data.frame(state = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "ABCG", "AD", "ADH", "ADI", "AI", "DH", "DI"), 
+                  col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",
+                          "#732982", "#8EAA39" ,"#ff4d00", "#88EE33", "#CC8899", "#0000ff", "#000000"))
+
+# Create legend
+# png(file = "biogeography/outputs/nodes-legend.png", width = 4000, height = 3100, res = 900)
+plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
+legend("topleft", legend = dff$state, 
+       pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 3,
+       col = dff$col)
+#dev.off()
 #----------------------
 # DEC all
 #----------------------
