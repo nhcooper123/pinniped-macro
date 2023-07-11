@@ -66,50 +66,51 @@ default_colours <- data.frame(ranges_list, colors_list_for_states)
 #----------------------
 # Add basic colours
 default_colours <- mutate(default_colours, 
-                          impossible = c("#000000", # null
+                          impossible = c("#eeeeee", # null
                                          "#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",# A-I
                                         rep("grey50", times = (length(default_colours$ranges_list))-10)))
 
 
 # Add specific colours for tip combinations
 default_colours <- mutate(default_colours,
-                          impossible = case_when(ranges_list == "AB" ~ "#732950",
-                                                 ranges_list == "AC" ~ "#4B0082",
-                                                 ranges_list == "AD" ~ "#0000ff",
-                                                 ranges_list == "AH" ~ "#00FFAA",
-                                                 ranges_list == "BC" ~ "#FFED80",
-                                                 ranges_list == "BE" ~ "#FF5500",
-                                                 ranges_list == "CF" ~ "#FF3990",
-                                                 ranges_list == "DG" ~ "#FFF333",
-                                                 ranges_list == "DH" ~ "#732982",
-                                                 ranges_list == "DI" ~ "#00AAFF",
-                                                 ranges_list == "EI" ~ "#AA718E",
-                                                 ranges_list == "ABC" ~ "#558080",
-                                                 ranges_list == "ADH" ~ "#8EAA39",
-                                                 ranges_list == "BCF" ~ "#6A40AA",
-                                                 ranges_list == "BCG" ~ "#2A6AEA",
-                                                 ranges_list == "BDE" ~ "#235347",
-                                                 ranges_list == "CDI" ~ "#6A6AAA",
-                                                 ranges_list == "CEF" ~ "#FFCC00",
-                                                 ranges_list == "EFG" ~ "#FFA500",
-                                                 ranges_list == "ABCG" ~ "#800000",
+                          impossible = case_when(#ranges_list == "AB" ~ "#732950",
+                                                 #ranges_list == "AC" ~ "#4B0082",
+                                                 ranges_list == "AD" ~  "#8EAA39",
+                                                 #ranges_list == "AH" ~ "#00FFAA",
+                                                 #ranges_list == "BC" ~ "#FFED80",
+                                                 #ranges_list == "BE" ~ "#FF5500",
+                                                 #ranges_list == "CF" ~ "#FF3990",
+                                                 #ranges_list == "DG" ~ "#FFF333",
+                                                 ranges_list == "DH" ~ "#0000ff",
+                                                 ranges_list == "DI" ~ "#000000",
+                                                 #ranges_list == "EI" ~ "#AA718E",
+                                                 #ranges_list == "ABC" ~ "#558080",
+                                                 #ranges_list == "ADH" ~ "#8EAA39",
+                                                 #ranges_list == "BCF" ~ "#6A40AA",
+                                                 #ranges_list == "BCG" ~ "#2A6AEA",
+                                                 #ranges_list == "BDE" ~ "#235347",
+                                                 #ranges_list == "CDI" ~ "#6A6AAA",
+                                                 #ranges_list == "CEF" ~ "#FFCC00",
+                                                 #ranges_list == "EFG" ~ "#FFA500",
+                                                 ranges_list == "ABCG" ~  "#732982",
                                                  TRUE ~ as.character(impossible)))
 
 colour_list_impossible <- pull(default_colours, impossible)
 
+
+##### needs fixing
 #-----------------------------------------
 # Legend
 #----------------------------------------
 #png(file = "supplemental/figures/BGB-legend.png", width = 3500, height = 3100, res = 900)
-par(mar = c(1,1,1,1))
-plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
-legend("topleft", legend = c("A", "B", "C", "D", "E", "F", "G", "H", "I", 
-                            "AB", "AC", "AD", "AH", "BC", "BE", "CF", "DG", "DH", "DI", "EI",
-                            "ABC", "ADH", "BCF", "BCG", "BDE", "CDI", "CEF", "EFG", "ABCG"), 
-       pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 4,
-       col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",
-               "#732950","#4B0082", "#0000ff", "#00FFAA", "#FFED80", "#FF5500", "#FF3990", "#FFF333","#732982","#00AAFF","#AA718E",
-               "#558080","#8EAA39", "#6A40AA","#2A6AEA", "#235347", "#6A6AAA", "#FFCC00","#FFA500","#800000" ))
-mtext("Areas", at = 0.45, cex = 1.1)
+#par(mar = c(1,1,1,1))
+#plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
+#legend("topleft", legend = c("A", "B", "C", "D", "E", "F", "G", "H", "I", 
+#                           "AB", "AC", "AD", "AH", "BC", "BE", "CF", "DG", "DH", "DI", "EI",
+#                           "ABC", "ADH", "BCF", "BCG", "BDE", "CDI", "CEF", "EFG", "ABCG"), 
+#      pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 4,
+#      col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",
+#               "#732950","#4B0082", "#0000ff", "#00FFAA", "#FFED80", "#FF5500", "#FF3990", "#FFF333","#732982","#00AAFF","#AA718E",
+#               "#558080","#8EAA39", "#6A40AA","#2A6AEA", "#235347", "#6A6AAA", "#FFCC00","#FFA500","#800000" ))
 #dev.off()
 ### SAVE!
