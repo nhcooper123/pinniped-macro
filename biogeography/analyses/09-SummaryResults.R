@@ -7,8 +7,11 @@
 
 # Load libraries
 library(BioGeoBEARS)
+library(ggtree)
+library(tidyverse)
 library(ape)
 library(cladoRcpp)
+source("biogeography/analyses/function-extract-results.R")
 
 # BEFORE THIS YOU NEED TO RUN 01 to get state lists
 source("biogeography/analyses/01-pinniped-state-list-fix.R")
@@ -40,108 +43,312 @@ tipranges_extant <- getranges_from_LagrangePHYLIP(lgdata_fn = geogfn_extant)
 load("biogeography/outputs/pinnipeds-all-DEC_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-all-DECJ_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-fossil-DEC_9areas_impossible.Rdata")
-load("biogeography/outputs/pinnipeds-all-DECJ_9areas_impossible.Rdata")
+load("biogeography/outputs/pinnipeds-fossil-DECJ_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DEC_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DECJ_9areas_impossible.Rdata")
 
-#-----------------------------------------------
-# Get colours 
-#-----------------------------------------------
-source("biogeography/analyses/messing-about-with-colours.R")
-colors_list_for_states <- colour_list_impossible
-
-
-#-----------------------------------------------
-# Get area and state lists
-#-----------------------------------------------
-get_results <- function(tree, tipranges, results_object){
-
-tr_pruningwise <- reorder(tree, "pruningwise")
-tips <- 1:length(tr_pruningwise$tip.label)
-nodes <- (length(tr_pruningwise$tip.label) + 1):(length(tr_pruningwise$tip.label) + 
-                                                   tr_pruningwise$Nnode)
-
-areas <- getareas_from_tipranges_object(tipranges)
-numareas <- length(areas)
-max_range_size <- 4
-
-numstates <- numstates_from_numareas(numareas = length(areas), 
-                                     maxareas = max_range_size, include_null_range = results_object$inputs$include_null_range)
-
-states_list_areaLetters <- areas_list_to_states_list_new(areas, 
-                                                         maxareas = max_range_size, include_null_range = results_object$inputs$include_null_range)
-
-states_list_0based_index <- rcpp_areas_list_to_states_list(areas, 
-                                                           maxareas = max_range_size, include_null_range = results_object$inputs$include_null_range)
-#-----------------------------------------------
-# Set up matrix for node values
-#-----------------------------------------------
-leftright_nodes_matrix <- get_leftright_nodes_matrix_from_results(tr_pruningwise)
-
-# Get marginal probs
-marprobs <- results_object$ML_marginal_prob_each_state_at_branch_bottom_below_node
-
-left_ML_marginals_by_node <- marprobs[leftright_nodes_matrix[, 2], ]
-right_ML_marginals_by_node = marprobs[leftright_nodes_matrix[, 1], ]
-
-#-----------------------------------------------
-# Extract relative probabilities
-#-----------------------------------------------
-relprobs_matrix <- results_object$ML_marginal_prob_each_state_at_branch_top_AT_node
-
-relprobs_matrix_for_internal_states <- relprobs_matrix[nodes, ]
-
-#-----------------------------------------------
-# Get list of ranges
-#-----------------------------------------------
-ranges_list <- states_list_0based_to_ranges_txt_list(state_indices_0based = states_list_0based_index, 
-                                                     areanames = areas)
-statenames <- unlist(ranges_list)
-
-#-----------------------------------------------
-# Extract ML probabilities at nodes
-#-----------------------------------------------
-MLprobs <- get_ML_probs(relprobs_matrix)
-MLstates <- get_ML_states_from_relprobs(relprobs_matrix, statenames, 
-                                        returnwhat = "states", if_ties = "takefirst")
-
-#-----------------------------------------------
-# Sort colours
-#-----------------------------------------------
-possible_ranges_list_txt <- ranges_list    
-
-cols_byNode <- rangestxt_to_colors(possible_ranges_list_txt, 
-                                   colors_list_for_states, MLstates)
-
 #----------------------------------------------
-# Set up dataframe for plotting
+# Extract results
 #----------------------------------------------
-dd2 <- data.frame(relprobs_matrix_for_internal_states)
-colnames(dd2) <- ranges_list
-dd2$node <- (length(tree$tip.label)+1):((length(tree$edge)/2)+1) 
-dd2$ML <- MLstates[(length(tree$tip.label)+1):((length(tree$edge)/2)+1) ] # First node is 121
-dd2$colour <- cols_byNode[(length(tree$tip.label)+1):((length(tree$edge)/2)+1) ]
-
-return(dd2)
-}
-#----------------------------------------------
-# Run function
-#----------------------------------------------
-DEC_all <- get_results(tree1, tipranges, resDEC)
-DECJ_all <- get_results(tree1, tipranges, resDECJ)
-DEC_fossil <- get_results(tree_fossil, tipranges_fossil, resDEC_fossil)
-DECJ_fossil <- get_results(tree_fossil, tipranges_fossil, resDECJ_fossil)
-DEC_extant <- get_results(tree_extant, tipranges_extant, resDEC_extant)
-DECJ_extant <- get_results(tree_extant, tipranges_extant, resDECJ_extant)
-
+DEC_all <- extract_results(tree1, tipranges, resDEC)
+DECJ_all <- extract_results(tree1, tipranges, resDECJ)
+DEC_fossil <- extract_results(tree_fossil, tipranges_fossil, resDEC_fossil)
+DECJ_fossil <- extract_results(tree_fossil, tipranges_fossil, resDECJ_fossil)
+DEC_extant <- extract_results(tree_extant, tipranges_extant, resDEC_extant)
+DECJ_extant <- extract_results(tree_extant, tipranges_extant, resDECJ_extant)
 
 # Get node numbers. Check using
 # ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
 
-dd3 <- filter(dd2, node == 121 | node == 130|  node == 131
-              | node == 132 | node == 133 | node == 186)
+#-----------------------
+# Insets - all
+#-----------------------
+# Choose one taxon per group
+# Needs to be living if possible
+focal_species <- c("Arctocephalus australis", "Phoca vitulina", 
+                   "Odobenus rosmarus", "Allodesmus demerei", 
+                   "Potamotherium vallentoni", "Devinophoca claytoni", 
+                   "Monachus monachus")
 
-colnames(DEC_all)[which(DEC_all[121,] > 0.1)]
+# Replace underscores with spaces in tree file
+tree$tip.label <- gsub("_", " ", tree$tip.label)
+
+# Remove all other taxa from the tree
+tree_basic <- drop.tip(tree, setdiff(tree$tip.label, focal_species))
+
+# Rename with group names
+tree_basic$tip.label <- gsub("Arctocephalus australis", "Otariidae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Phoca vitulina", "Phocinae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Odobenus rosmarus", "Odobenidae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Allodesmus demerei", "Desmatophocidae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Potamotherium vallentoni", "stem", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Devinophoca claytoni", "Devinophocinae", tree_basic$tip.label) 
+tree_basic$tip.label <- gsub("Monachus monachus", "Monachinae", tree_basic$tip.label) 
+
+basic_tree <-
+  ggtree(tree_basic, branch.length = "none") %>% ggtree::rotate(8) %>% ggtree::rotate(13) %>% ggtree::rotate(12) +
+  xlim(-2,10) +
+  geom_tiplab(geom = "text", size = 6) +
+  geom_rootedge(rootedge = 1) 
+#+ geom_text2(aes(subset=!isTip, label=node), hjust=-.3) + geom_tiplab(size = 2)
+
+#------------------------------
+# Add pies
+# Get node numbers. Check using
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+
+DEC_all2 <- filter(DEC_all, node == 121 | node == 130|  node == 131
+              | node == 132 | node == 133 | node == 186)
+# Change numbers to match tree node numbers
+DEC_all2$node <- 8:13 # 7 taxa, so nodes are 8:13
+
+# Identify states with probabilities > 0.1
+colnames(DEC_all2)[which(DEC_all2[1,] > 0.1)]
+colnames(DEC_all2)[which(DEC_all2[2,] > 0.1)]
+colnames(DEC_all2)[which(DEC_all2[3,] > 0.1)]
+colnames(DEC_all2)[which(DEC_all2[4,] > 0.1)]
+colnames(DEC_all2)[which(DEC_all2[5,] > 0.1)]
+colnames(DEC_all2)[which(DEC_all2[6,] > 0.1)]
+
+# Create colour palette just for these colours
+colours_pies <- data.frame(state = colnames(DEC_all), col = rep("#eeeeee", length(colnames(DEC_all))))
+
+colours_pies2 <- 
+  colours_pies %>%
+  dplyr::slice(-c(257,258)) %>%
+  mutate(col = case_when(state == "A" ~ "#D400D4",
+                         state == "AD" ~ "#8EAA39",
+                         state == "D" ~ "#FFED00",
+                         state == "DH" ~ "#0000ff",
+                         state == "DI" ~ "#000000",
+                         state == "I" ~ "#74D7EE",
+                         state == "AI" ~ "#CC8899",
+                         state == "ADI" ~ "#88EE33",
+                         state == "ADH" ~ "#ff4d00",
+                         TRUE ~ as.character(col)))
+
+# Extract colours only
+colours_pies3 <- 
+  colours_pies2 %>%
+  pull(col)
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+# Note weird colour set up is because the state - gets removed for some reason
+# but needs to be the first in the list to match dd3
+xxx <- colours_pies2 %>% arrange(state)
+pies <- nodepie(DEC_all2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
+
+# Add pies to plot
+inset(basic_tree, pies, width = 0.4, height = 1)
+
+# To save
+inset_pies_DEC_all <- inset(basic_tree, pies, width = 0.3, height = 0.8)
+#------------------
+# Save plot
+#------------------
+ggsave(inset_pies_DEC_all, file = "biogeography/outputs/biogeography-inset-all-DEC.png", 
+       width = 8, height = 6, dpi = 900)
+
+#-----------------------
+# Insets - fossils
+#-----------------------
+# Choose one taxon per group
+# Needs to be living if possible
+focal_speciesf <- c("Pelagiarctos sp", "Praepusa boeska", 
+                   "Odobenidae indet", "Allodesmus demerei", 
+                   "Potamotherium vallentoni", "Devinophoca claytoni", 
+                   "Homiphoca sp")
+
+# Replace underscores with spaces in tree file
+tree_fossil$tip.label <- gsub("_", " ", tree_fossil$tip.label)
+
+# Remove all other taxa from the tree
+tree_basicf <- drop.tip(tree_fossil, setdiff(tree_fossil$tip.label, focal_speciesf))
+
+# Rename with group names
+tree_basicf$tip.label <- gsub("Pelagiarctos sp", "Otariidae", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Praepusa boeska", "Phocinae", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Odobenidae indet", "Odobenidae", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Allodesmus demerei", "Desmatophocidae", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Potamotherium vallentoni", "stem", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Devinophoca claytoni", "Devinophocinae", tree_basicf$tip.label) 
+tree_basicf$tip.label <- gsub("Homiphoca sp", "Monachinae", tree_basicf$tip.label) 
+
+basic_treef <-
+  ggtree(tree_basicf, branch.length = "none") %>% ggtree::rotate(8) %>% ggtree::rotate(13) %>% ggtree::rotate(12) +
+  xlim(-2,10) +
+  geom_tiplab(geom = "text", size = 6) +
+  geom_rootedge(rootedge = 1) 
+#------------------------------
+# Add pies
+# Get node numbers. Check using
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+
+DEC_fossil2 <- filter(DEC_fossil, node == 86 | node == 95|  node == 96
+                   | node == 97 | node == 98 | node == 133)
+# Change numbers to match tree node numbers
+DEC_fossil2$node <- 8:13 # 7 taxa, so nodes are 8:13
+
+# Identify states with probabilities > 0.1
+colnames(DEC_fossil2)[which(DEC_fossil2[1,] > 0.1)]
+colnames(DEC_fossil2)[which(DEC_fossil2[2,] > 0.1)]
+colnames(DEC_fossil2)[which(DEC_fossil2[3,] > 0.1)]
+colnames(DEC_fossil2)[which(DEC_fossil2[4,] > 0.1)]
+colnames(DEC_fossil2)[which(DEC_fossil2[5,] > 0.1)]
+colnames(DEC_fossil2)[which(DEC_fossil2[6,] > 0.1)]
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+# Note weird colour set up is because the state - gets removed for some reason
+# but needs to be the first in the list to match dd3
+pies <- nodepie(DEC_fossil2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
+
+# Add pies to plot
+inset(basic_treef, pies, width = 0.4, height = 1)
+
+# To save
+inset_pies_DEC_fossil <- inset(basic_treef, pies, width = 0.3, height = 0.8)
+#------------------
+# Save plot
+#------------------
+ggsave(inset_pies_DEC_fossil, file = "biogeography/outputs/biogeography-inset-fossil-DEC.png", 
+       width = 8, height = 6, dpi = 900)
+
+#------------------------------
+# DECJ
+# Add pies
+# Get node numbers. Check using
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+
+DECJ_fossil2 <- filter(DECJ_fossil, node == 86 | node == 95|  node == 96
+                      | node == 97 | node == 98 | node == 133)
+# Change numbers to match tree node numbers
+DECJ_fossil2$node <- 8:13 # 7 taxa, so nodes are 8:13
+
+# Identify states with probabilities > 0.1
+colnames(DECJ_fossil2)[which(DECJ_fossil2[1,] > 0.1)]
+colnames(DECJ_fossil2)[which(DECJ_fossil2[2,] > 0.1)]
+colnames(DECJ_fossil2)[which(DECJ_fossil2[3,] > 0.1)]
+colnames(DECJ_fossil2)[which(DECJ_fossil2[4,] > 0.1)]
+colnames(DECJ_fossil2)[which(DECJ_fossil2[5,] > 0.1)]
+colnames(DECJ_fossil2)[which(DECJ_fossil2[6,] > 0.1)]
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+# Note weird colour set up is because the state - gets removed for some reason
+# but needs to be the first in the list to match dd3
+pies <- nodepie(DECJ_fossil2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
+
+# Add pies to plot
+inset(basic_treef, pies, width = 0.4, height = 1)
+
+# To save
+inset_pies_DECJ_fossil <- inset(basic_treef, pies, width = 0.3, height = 0.8)
+#------------------
+# Save plot
+#------------------
+ggsave(inset_pies_DECJ_fossil, file = "biogeography/outputs/biogeography-inset-fossil-DECJ.png", 
+       width = 8, height = 6, dpi = 900)
+
+#-----------------------
+# Insets - extant
+#-----------------------
+# Choose one taxon per group
+# Needs to be living if possible
+focal_speciese <- c("Arctocephalus townsendi", "Erignathus barbatus", 
+                    "Odobenus rosmarus", 
+                    "Monachus monachus")
+
+# Replace underscores with spaces in tree file
+tree_extant$tip.label <- gsub("_", " ", tree_extant$tip.label)
+
+# Remove all other taxa from the tree
+tree_basice <- drop.tip(tree_extant, setdiff(tree_extant$tip.label, focal_speciese))
+
+# Rename with group names
+tree_basice$tip.label <- gsub("Arctocephalus townsendi", "Otariidae", tree_basice$tip.label) 
+tree_basice$tip.label <- gsub("Erignathus barbatus", "Phocinae", tree_basice$tip.label) 
+tree_basice$tip.label <- gsub("Odobenus rosmarus", "Odobenidae", tree_basice$tip.label) 
+tree_basice$tip.label <- gsub("Monachus monachus", "Monachinae", tree_basice$tip.label) 
+
+basic_treee <-
+  ggtree(tree_basice, branch.length = "none")
+  xlim(-2,10) +
+  geom_tiplab(geom = "text", size = 6) +
+  geom_rootedge(rootedge = 1) 
+#------------------------------
+# Add pies
+# Get node numbers. Check using
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+
+DEC_extant2 <- filter(DEC_extant, node == 35 | node == 36|  node == 52)
+# Change numbers to match tree node numbers
+DEC_extant2$node <- 5:7 # 4 taxa, so nodes are 5:7
+
+# Identify states with probabilities > 0.1
+colnames(DEC_extant2)[which(DEC_extant2[1,] > 0.1)]
+colnames(DEC_extant2)[which(DEC_extant2[2,] > 0.1)]
+colnames(DEC_extant2)[which(DEC_extant2[3,] > 0.1)]
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+# Note weird colour set up is because the state - gets removed for some reason
+# but needs to be the first in the list to match dd3
+pies <- nodepie(DEC_extant2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
+
+# Add pies to plot
+inset(basic_treee, pies, width = 0.4, height = 1)
+
+# To save
+inset_pies_DEC_extant <- inset(basic_treee, pies, width = 0.3, height = 0.8)
+#------------------
+# Save plot
+#------------------
+ggsave(inset_pies_DEC_extant, file = "biogeography/outputs/biogeography-inset-extant-DEC.png", 
+       width = 8, height = 6, dpi = 900)
+
+#------------------------------
+# DECJ
+# Add pies
+# Get node numbers. Check using
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+
+DECJ_extant2 <- filter(DECJ_extant, node == 86 | node == 95|  node == 96
+                       | node == 97 | node == 98 | node == 133)
+# Change numbers to match tree node numbers
+DECJ_extant2$node <- 8:13 # 7 taxa, so nodes are 8:13
+
+# Identify states with probabilities > 0.1
+colnames(DECJ_extant2)[which(DECJ_extant2[1,] > 0.1)]
+colnames(DECJ_extant2)[which(DECJ_extant2[2,] > 0.1)]
+colnames(DECJ_extant2)[which(DECJ_extant2[3,] > 0.1)]
+colnames(DECJ_extant2)[which(DECJ_extant2[4,] > 0.1)]
+colnames(DECJ_extant2)[which(DECJ_extant2[5,] > 0.1)]
+colnames(DECJ_extant2)[which(DECJ_extant2[6,] > 0.1)]
+
+# Create pies
+# Colour argument gives strange warning but this is just related to change in base R
+# Note weird colour set up is because the state - gets removed for some reason
+# but needs to be the first in the list to match dd3
+pies <- nodepie(DECJ_extant2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
+
+# Add pies to plot
+inset(basic_treef, pies, width = 0.4, height = 1)
+
+# To save
+inset_pies_DECJ_extant <- inset(basic_treef, pies, width = 0.3, height = 0.8)
+#------------------
+# Save plot
+#------------------
+ggsave(inset_pies_DECJ_extant, file = "biogeography/outputs/biogeography-inset-extant-DECJ.png", 
+       width = 8, height = 6, dpi = 900)
+
+
+
+
+
+
 
 #----------------------
 # DEC all
@@ -149,7 +356,7 @@ colnames(DEC_all)[which(DEC_all[121,] > 0.1)]
 a <- 
   DEC_all %>% 
   filter(node == 121) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -158,7 +365,7 @@ a <-
 b <-
   DEC_all %>% 
   filter(node == 130) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -167,7 +374,7 @@ b <-
 c <-
 DEC_all %>% 
   filter(node == 131) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -176,7 +383,7 @@ DEC_all %>%
 d <-
 DEC_all %>% 
   filter(node == 132) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -185,7 +392,7 @@ DEC_all %>%
 e <- 
 DEC_all %>% 
   filter(node == 133) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -194,7 +401,7 @@ DEC_all %>%
 f <- 
 DEC_all %>% 
   filter(node == 186) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -207,7 +414,7 @@ modsDEC_all <- rbind(a,b,c,d,e,f)
 a <- 
   DECJ_all %>% 
   filter(node == 121) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -216,7 +423,7 @@ a <-
 b <-
   DECJ_all %>% 
   filter(node == 130) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -225,7 +432,7 @@ b <-
 c <-
   DECJ_all %>% 
   filter(node == 131) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -234,7 +441,7 @@ c <-
 d <-
   DECJ_all %>% 
   filter(node == 132) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -243,7 +450,7 @@ d <-
 e <- 
   DECJ_all %>% 
   filter(node == 133) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -252,7 +459,7 @@ e <-
 f <- 
   DECJ_all %>% 
   filter(node == 186) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -267,7 +474,7 @@ models_all <- rbind(modsDEC_all, modsDECJ_all)
 a <- 
   DEC_fossil %>% 
   filter(node == 86) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -276,7 +483,7 @@ a <-
 b <-
   DEC_fossil %>% 
   filter(node == 95) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -285,7 +492,7 @@ b <-
 c <-
   DEC_fossil %>% 
   filter(node == 96) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -294,7 +501,7 @@ c <-
 d <-
   DEC_fossil %>% 
   filter(node == 97) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -303,7 +510,7 @@ d <-
 e <- 
   DEC_fossil %>% 
   filter(node == 98) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -312,7 +519,7 @@ e <-
 f <- 
   DEC_fossil %>% 
   filter(node == 133) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -325,7 +532,7 @@ modsDEC_fossil <- rbind(a,b,c,d,e,f)
 a <- 
   DECJ_fossil %>% 
   filter(node == 86) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -334,7 +541,7 @@ a <-
 b <-
   DECJ_fossil %>% 
   filter(node == 95) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -343,7 +550,7 @@ b <-
 c <-
   DECJ_fossil %>% 
   filter(node == 96) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -352,7 +559,7 @@ c <-
 d <-
   DECJ_fossil %>% 
   filter(node == 97) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -361,7 +568,7 @@ d <-
 e <- 
   DECJ_fossil %>% 
   filter(node == 98) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -370,7 +577,7 @@ e <-
 f <- 
   DECJ_fossil %>% 
   filter(node == 133) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -384,7 +591,7 @@ modsDECJ_fossil <- rbind(a,b,c,d,e,f)
 a <- 
   DEC_extant %>% 
   filter(node == 35) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -393,7 +600,7 @@ a <-
 b <-
   DEC_extant %>% 
   filter(node == 36) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -402,7 +609,7 @@ b <-
 c <-
   DEC_extant %>% 
   filter(node == 52) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -415,7 +622,7 @@ modsDEC_extant <- rbind(a,b,c)
 a <- 
   DECJ_extant %>% 
   filter(node == 35) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -424,7 +631,7 @@ a <-
 b <-
   DECJ_extant %>% 
   filter(node == 36) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -433,7 +640,7 @@ b <-
 c <-
   DECJ_extant %>% 
   filter(node == 52) %>% 
-  select(-ML, -colour) %>% 
+  select(-ML) %>% 
   pivot_longer(!node, names_to = "state", values_to = "proportion") %>%
   arrange(-proportion) %>%
   slice(1:5) %>%
@@ -445,7 +652,10 @@ modsDECJ_extant <- rbind(a,b,c)
 # Stick em all together
 #-------------------
 
-all_models <- rbind(modsDEC_all, modsDECJ_all, modsDEC_fossil, 
+all_models <- cbind(modsDEC_all, modsDECJ_all, modsDEC_fossil, 
                     modsDECJ_fossil, modsDEC_extant, modsDECJ_extant)
 
 write.csv(all_models, file = "biogeography/outputs/all-models-best-states.csv")
+
+#------------------------
+
