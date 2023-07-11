@@ -174,7 +174,7 @@ tree_basic$tip.label <- gsub("Devinophoca claytoni", "Devinophocinae", tree_basi
 tree_basic$tip.label <- gsub("Monachus monachus", "Monachinae", tree_basic$tip.label) 
 
 basic_tree <-
-  ggtree(tree_basic, branch.length = "none") %>% rotate(8) %>% rotate(13) %>% rotate(12) +
+  ggtree(tree_basic, branch.length = "none") %>% ggtree::rotate(8) %>% ggtree::rotate(13) %>% ggtree::rotate(12) +
   xlim(-2,10) +
   geom_tiplab(geom = "text", size = 6) +
   geom_rootedge(rootedge = 1) 
