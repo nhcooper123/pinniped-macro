@@ -13,51 +13,49 @@ coda::effectiveSize(mcmcout$N_shifts)
 
 edata.pinnip <- getEventData(tree.pinnip, here::here("diversification/analyses/fossil_only_with_sampled_ancestors/event_data_pinnipedia_fossil.txt"), burnin = 0.1)
 
-post_probs <- table(mcmcout$N_shifts) / nrow(mcmcout)
-
 summary(edata.pinnip)
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_speciation.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_speciation.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
-tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 dev.off()
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_extinction.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_extinction.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
-tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 dev.off()
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_netdiv.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_netdiv.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
-tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 dev.off()
 
-css <- credibleShiftSet(edata.pinnip, expectedNumberOfShifts = 1)
-summary(css)
+## css <- credibleShiftSet(edata.pinnip, expectedNumberOfShifts = 1)
+## summary(css)
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/css_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
-plot.credibleshiftset(css, lwd = 2, xlim = c(0, 45));axisPhylo()#;tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
-dev.off()
+## png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/css_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
+## plot.credibleshiftset(css, lwd = 2, xlim = c(0, 45));axisPhylo()#;tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+## dev.off()
 
-best <- getBestShiftConfiguration(edata.pinnip, expectedNumberOfShifts = 1)
-plot.bammdata(best, lwd = 2, legend = TRUE, xlim = c(0, 45));axisPhylo();tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
-addBAMMshifts(best, cex = 2.5)
+## best <- getBestShiftConfiguration(edata.pinnip, expectedNumberOfShifts = 1)
+## plot.bammdata(best, lwd = 2, legend = TRUE, xlim = c(0, 45));axisPhylo();tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+## addBAMMshifts(best, cex = 2.5)
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/rtt_speciation_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
-plotRateThroughTime(edata.pinnip, ratetype = "speciation", intervalCol = "#CC6677", avgCol = "#CC6677")
-dev.off()
+## png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/rtt_speciation_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
+## plotRateThroughTime(edata.pinnip, ratetype = "speciation", intervalCol = "#CC6677", avgCol = "#CC6677")
+## dev.off()
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/rtt_extinction_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
-plotRateThroughTime(edata.pinnip, ratetype = "extinction", intervalCol = "#CC6677", avgCol = "#CC6677")
-dev.off()
+## png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/rtt_extinction_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
+## plotRateThroughTime(edata.pinnip, ratetype = "extinction", intervalCol = "#CC6677", avgCol = "#CC6677")
+## dev.off()
 
-png(here::here("diversification/outputs/figs/fossil_only_with_sampled_ancestors/rtt_netdiv_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
-plotRateThroughTime(edata.pinnip, ratetype = "netdiv", intervalCol = "#CC6677", avgCol = "#CC6677")
-abline(h = 0, lwd = 2, lty = 2, col = "grey")
-dev.off()
+## png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/rtt_netdiv_pinnipedia_fossil_only_full.png"), width = 9, height = 9, units = "in", res = 300)
+## plotRateThroughTime(edata.pinnip, ratetype = "netdiv", intervalCol = "#CC6677", avgCol = "#CC6677")
+## abline(h = 0, lwd = 2, lty = 2, col = "grey")
+## dev.off()
 
 
 ## Rates for Odobenidae
@@ -86,7 +84,7 @@ dev.off()
 
 ## col.plots <- c("#332288", "#44AA99", "#DDCC77", "#882255", "#CC6677")
 
-## png(here::here("diversification/outputs/figs/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_speciation_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
+## png(here::here("supplemental/figures/diversification/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_speciation_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
 ## plotRateThroughTime(edata.pinnip, intervalCol = NA, avgCol = col.plots[5], ylim = c(0, 0.9), lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = odob.node, nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = otar.node, nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
@@ -96,7 +94,7 @@ dev.off()
 ## dev.off()
 
 
-## png(here::here("diversification/outputs/figs/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_extiction_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
+## png(here::here("supplemental/figures/diversification/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_extiction_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
 ## plotRateThroughTime(edata.pinnip, intervalCol = NA, ratetype = "extinction", avgCol = col.plots[5], ylim = c(0, 0.9), lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = odob.node, ratetype = "extinction", nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = otar.node, ratetype = "extinction", nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
@@ -106,7 +104,7 @@ dev.off()
 ## dev.off()
 
 
-## png(here::here("diversification/outputs/figs/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_netdiv_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
+## png(here::here("supplemental/figures/diversification/main_analysis_with_sampled_ancestors/rtt_fossil_only_full_netdiv_pinnipedia_per_family.png"), width = 9, height = 9, units = "in", res = 300)
 ## plotRateThroughTime(edata.pinnip, intervalCol = NA, ratetype = "netdiv", avgCol = col.plots[5], ylim = c(-0.1, 0.4), lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = odob.node, ratetype = "netdiv", nodetype = "include", intervalCol = NA, avgCol = col.plots[1], add = TRUE, lwd = 5)
 ## plotRateThroughTime(edata.pinnip, node = otar.node, ratetype = "netdiv", nodetype = "include", intervalCol = NA, avgCol = col.plots[4], add = TRUE, lwd = 5)
