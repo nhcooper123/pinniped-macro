@@ -16,13 +16,6 @@ source("biogeography/analyses/function-extract-results.R")
 # BEFORE THIS YOU NEED TO RUN 01 to get state lists
 source("biogeography/analyses/01-pinniped-state-list-fix.R")
 
-#-------------------
-# Read in the trees
-#------------------
-tree1 <- read.tree("biogeography/data/pinniped-tree-all_9areas.tre")
-tree_fossil <- read.tree("biogeography/data/pinniped-tree-fossil_9areas.tre")
-tree_extant <- read.tree("biogeography/data/pinniped-tree-extant_9areas.tre")
-
 #-----------------------------------------------
 # Read in the geography files and get tip ranges
 #-----------------------------------------------
@@ -46,6 +39,13 @@ load("biogeography/outputs/pinnipeds-fossil-DEC_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-fossil-DECJ_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DEC_9areas_impossible.Rdata")
 load("biogeography/outputs/pinnipeds-extant-DECJ_9areas_impossible.Rdata")
+
+#-------------------
+# Read in the trees
+#------------------
+tree1 <- read.tree("biogeography/data/pinniped-tree-all_9areas.tre")
+tree_fossil <- read.tree("biogeography/data/pinniped-tree-fossil_9areas.tre")
+tree_extant <- read.tree("biogeography/data/pinniped-tree-extant_9areas.tre")
 
 #----------------------------------------------
 # Extract results
@@ -71,10 +71,10 @@ focal_species <- c("Arctocephalus australis", "Phoca vitulina",
                    "Monachus monachus")
 
 # Replace underscores with spaces in tree file
-tree$tip.label <- gsub("_", " ", tree$tip.label)
+tree1$tip.label <- gsub("_", " ", tree1$tip.label)
 
 # Remove all other taxa from the tree
-tree_basic <- drop.tip(tree, setdiff(tree$tip.label, focal_species))
+tree_basic <- drop.tip(tree1, setdiff(tree1$tip.label, focal_species))
 
 # Rename with group names
 tree_basic$tip.label <- gsub("Arctocephalus australis", "Otariidae", tree_basic$tip.label) 
@@ -127,16 +127,12 @@ colours_pies2 <-
                          state == "ADH" ~ "#ff4d00",
                          TRUE ~ as.character(col)))
 
-# Extract colours only
-colours_pies3 <- 
-  colours_pies2 %>%
-  pull(col)
+xxx <- colours_pies2 %>% arrange(state)
 
 # Create pies
 # Colour argument gives strange warning but this is just related to change in base R
 # Note weird colour set up is because the state - gets removed for some reason
 # but needs to be the first in the list to match dd3
-xxx <- colours_pies2 %>% arrange(state)
 pies <- nodepie(DEC_all2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
 
 # Add pies to plot
@@ -273,8 +269,8 @@ tree_basice$tip.label <- gsub("Odobenus rosmarus", "Odobenidae", tree_basice$tip
 tree_basice$tip.label <- gsub("Monachus monachus", "Monachinae", tree_basice$tip.label) 
 
 basic_treee <-
-  ggtree(tree_basice, branch.length = "none")
-  xlim(-2,10) +
+  ggtree(tree_basice, branch.length = "none") +
+  xlim(-2,6) +
   geom_tiplab(geom = "text", size = 6) +
   geom_rootedge(rootedge = 1) 
 #------------------------------
@@ -298,10 +294,10 @@ colnames(DEC_extant2)[which(DEC_extant2[3,] > 0.1)]
 pies <- nodepie(DEC_extant2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
 
 # Add pies to plot
-inset(basic_treee, pies, width = 0.4, height = 1)
+inset(basic_treee, pies, width = 0.9, height = 1)
 
 # To save
-inset_pies_DEC_extant <- inset(basic_treee, pies, width = 0.3, height = 0.8)
+inset_pies_DEC_extant <- inset(basic_treee, pies, width = 0.5, height = 1)
 #------------------
 # Save plot
 #------------------
@@ -314,18 +310,14 @@ ggsave(inset_pies_DEC_extant, file = "biogeography/outputs/biogeography-inset-ex
 # Get node numbers. Check using
 # ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
 
-DECJ_extant2 <- filter(DECJ_extant, node == 86 | node == 95|  node == 96
-                       | node == 97 | node == 98 | node == 133)
+DECJ_extant2 <- filter(DECJ_extant, node == 35 | node == 36|  node == 52)
 # Change numbers to match tree node numbers
-DECJ_extant2$node <- 8:13 # 7 taxa, so nodes are 8:13
+DECJ_extant2$node <- 5:7 # 7 taxa, so nodes are 8:13
 
 # Identify states with probabilities > 0.1
 colnames(DECJ_extant2)[which(DECJ_extant2[1,] > 0.1)]
 colnames(DECJ_extant2)[which(DECJ_extant2[2,] > 0.1)]
 colnames(DECJ_extant2)[which(DECJ_extant2[3,] > 0.1)]
-colnames(DECJ_extant2)[which(DECJ_extant2[4,] > 0.1)]
-colnames(DECJ_extant2)[which(DECJ_extant2[5,] > 0.1)]
-colnames(DECJ_extant2)[which(DECJ_extant2[6,] > 0.1)]
 
 # Create pies
 # Colour argument gives strange warning but this is just related to change in base R
@@ -334,10 +326,10 @@ colnames(DECJ_extant2)[which(DECJ_extant2[6,] > 0.1)]
 pies <- nodepie(DECJ_extant2, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
 
 # Add pies to plot
-inset(basic_treef, pies, width = 0.4, height = 1)
+inset(basic_treee, pies, width = 0.6, height = 1)
 
 # To save
-inset_pies_DECJ_extant <- inset(basic_treef, pies, width = 0.3, height = 0.8)
+inset_pies_DECJ_extant <- inset(basic_treee, pies, width = 0.5, height = 1)
 #------------------
 # Save plot
 #------------------
@@ -345,11 +337,32 @@ ggsave(inset_pies_DECJ_extant, file = "biogeography/outputs/biogeography-inset-e
        width = 8, height = 6, dpi = 900)
 
 
+#-----------------
+# Make a big plot
+#----------------
+# Extract inset_pies from main plotting script
 
+# Plot all together
+library(patchwork)
+all <-
+(inset_pies_DEC_all + inset_pies) /
+(inset_pies_DEC_fossil + inset_pies_DECJ_fossil) /
+(inset_pies_DEC_extant + inset_pies_DECJ_extant) + plot_annotation(tag_levels = "A")
 
+ggsave(all, file = "biogeography/outputs/biogeography-insets-all.png", 
+       width = 10, height = 10, dpi = 900 )
 
+dff <- data.frame(state = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "ABCG", "AD", "ADH", "ADI", "AI", "DH", "DI"), 
+                  col = c("#D400D4", "#24408E", "#008026","#FFED00", "#FF8C00", "#E40303", "#613915", "#FFAFC8", "#74D7EE",
+                          "#732982", "#8EAA39" ,"#ff4d00", "#88EE33", "#CC8899", "#0000ff", "#000000"))
 
-
+# Create legend
+# png(file = "biogeography/outputs/nodes-legend.png", width = 4000, height = 3100, res = 900)
+plot(NULL, xaxt = 'n', yaxt = 'n',bty = 'n', ylab = '', xlab = '', xlim = 0:1, ylim = 0:1)
+legend("topleft", legend = dff$state, 
+       pch = 15, pt.cex = 2.4, cex = 1.1, bty = 'n', ncol = 3,
+       col = dff$col)
+#dev.off()
 #----------------------
 # DEC all
 #----------------------
