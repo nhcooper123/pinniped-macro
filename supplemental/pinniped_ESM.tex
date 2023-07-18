@@ -355,7 +355,7 @@ Taxon names have been removed from Figures Y-Y for readability.
 \newpage
 \begin{landscape}
 \section{Biogeographical history}
-\subsection{Supplementary tables}
+\subsection{Data and supplementary tables}
 
 \input{figures/table-biogeo-data.tex}
 
@@ -379,6 +379,9 @@ Taxon names have been removed from Figures Y-Y for readability.
 % table of unlikely results
 \input{figures/table-unlikely.tex}
 
+%-----------------------------------------------------------------------------------
+\subsection{Detailed BioGeoBEARS outputs}
+
 The plots below show the detailed results from the BioGeoBEARS analyses \cite{matzke2013probabilistic}. Models are either the dispersal-extinction-cladogenesis (DEC) model \cite{ree2008maximum} or the DEC+J model \cite{matzke2014model}. 
 The nine different areas used were: (A) Northern Pacific Ocean, (B) Eastern South Pacific Ocean, (C) Australasian coastal waters, (D) Northern Atlantic Ocean, (E) Southern Atlantic Ocean, (F) Indian Ocean, (G) Southern Ocean, (H) Arctic Ocean, and (I) Paratethys/Mediterranean Ocean. Note that we excluded \textit{Pusa sibirica} (Lake Baikal seal) because of their isolated biogeography (they are only found in Lake Baikal). 
 Legends and taxon names have been removed from Figures \ref{fig-all-dec-ml}-\ref{fig-extant-decj-pie-unlikely} for readability. 
@@ -392,8 +395,8 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
   \label{fig-legend}
 \end{figure} 
 
-%-----------------------------------------------------------------------------------
-\subsubsection{All pinnipeds}
+\subsection{All pinnipeds}
+\subsubsection{Impossible states removed}
 
 % figure
 \begin{figure}[H]
@@ -438,6 +441,8 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 %-----------------------------------------------------------------------------------
 % unlikely
 
+\subsubsection{Impossible and unlikely states removed}
+
 % figure
 \begin{figure}[H]
  \centering
@@ -471,84 +476,8 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \end{figure} 
 
 %-----------------------------------------------------------------------------------
-\subsubsection{Fossil pinnipeds only}
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-tree.png}
-  \caption{Phylogeny of fossil pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
-  \label{fig-fossil-tree}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-dec-ml}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-pies.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-dec-pie}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-decj-ml}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-pies.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-decj-pie}
-\end{figure} 
- 
-%-----------------------------------------------------------------------------------
-% fossil + unlikely
-
-% figure
-\begin{figure}[H]
-\centering
- \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-dec-ml-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-pies.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-dec-pie-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-decj-ml-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-pies.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-decj-pie-unlikely}
-\end{figure} 
-%-----------------------------------------------------------------------------------
-\subsubsection{Extant pinnipeds only}
+\subsection{Extant pinnipeds only}
+\subsubsection{Impossible states removed}
 
 % figure
 \begin{figure}[H]
@@ -592,6 +521,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
  
 %-----------------------------------------------------------------------------------
 % unlikely + extant
+\subsubsection{Impossible and unlikely states removed}
 
 % figure
 \begin{figure}[H]
@@ -623,6 +553,86 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
   \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-unlikely-pies.png}
  \caption{extant pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
   \label{fig-extant-decj-pie-unlikely}
+\end{figure} 
+
+%-----------------------------------------------------------------------------------
+\subsection{Fossil pinnipeds only}
+\subsubsection{Impossible states removed}
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-tree.png}
+  \caption{Phylogeny of fossil pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
+  \label{fig-fossil-tree}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-MLstates.png}
+  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
+  \label{fig-fossil-dec-ml}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-impossible-pies.png}
+  \caption{Fossil pinnipeds only, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
+  \label{fig-fossil-dec-pie}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-MLstates.png}
+  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
+  \label{fig-fossil-decj-ml}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-impossible-pies.png}
+  \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
+  \label{fig-fossil-decj-pie}
+\end{figure} 
+ 
+%-----------------------------------------------------------------------------------
+% fossil + unlikely
+\subsubsection{Impossible and unlikely states removed}
+
+% figure
+\begin{figure}[H]
+\centering
+ \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-MLstates.png}
+  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+  \label{fig-fossil-dec-ml-unlikely}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-pies.png}
+  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+  \label{fig-fossil-dec-pie-unlikely}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-MLstates.png}
+  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+  \label{fig-fossil-decj-ml-unlikely}
+\end{figure} 
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-pies.png}
+  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+  \label{fig-fossil-decj-pie-unlikely}
 \end{figure} 
 
 %-------------------------------------------------------------------------------
