@@ -21,22 +21,25 @@ for(i in 1:length(shifts.prob)){
 
     summary(edata.pinnip)
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_speciation_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
-    plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_speciation_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
     ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
+    addBAMMlegend(a, location = "left")
     dev.off()
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_extinction_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
-    plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_extinction_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
     ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
+    addBAMMlegend(a, location = "left")
     dev.off()
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_netdiv_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
-    plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_full_netdiv_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
     ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
+    addBAMMlegend(a, location = "left")
     dev.off()
 
     ## css <- credibleShiftSet(edata.pinnip, expectedNumberOfShifts = shifts.prob[i])
@@ -47,7 +50,7 @@ for(i in 1:length(shifts.prob)){
     ## dev.off()
 
     ## best <- getBestShiftConfiguration(edata.pinnip, expectedNumberOfShifts = shifts.prob[i])
-    ## ## plot.bammdata(best, lwd = 2, legend = TRUE, xlim = c(0, 45));axisPhylo();tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
+    ## ## plot.bammdata(best, lwd = 2, xlim = c(0, 45));axisPhylo();tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     ## ## addBAMMshifts(best, cex = 2.5)
 
     ## png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses_with_sampled_ancestors/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/rtt_speciation_pinnipedia_full_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 9, height = 9, units = "in", res = 300)
