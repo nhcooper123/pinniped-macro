@@ -21,21 +21,21 @@ for(i in 1:length(shifts.prob)){
 
     summary(edata.pinnip)
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_speciation_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity-analyses/shifts-", gsub(".", "-", shifts.prob[i], fixed = TRUE), "/phylo-rates-pinnipedia-noanc-speciation-", gsub(".", "-", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
     a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
     #tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
     addBAMMlegend(a, location = "left")
     dev.off()
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_extinction_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity-analyses/shifts-", gsub(".", "-", shifts.prob[i], fixed = TRUE), "/phylo-rates-pinnipedia-noanc-extinction-", gsub(".", "-", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
     a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
     #tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
     addBAMMlegend(a, location = "left")
     dev.off()
 
-    png(here::here(paste0("supplemental/figures/diversification/sensitivity_analyses/shifts_", gsub(".", "_", shifts.prob[i], fixed = TRUE), "/phylo_rates_pinnipedia_noanc_netdiv_", gsub(".", "_", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
+    png(here::here(paste0("supplemental/figures/diversification/sensitivity-analyses/shifts-", gsub(".", "-", shifts.prob[i], fixed = TRUE), "/phylo-rates-pinnipedia-noanc-netdiv-", gsub(".", "-", shifts.prob[i], fixed = TRUE), ".png")), width = 4, height = 5.5, units = "in", res = 300)
     a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
     #tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
     addBAMMshifts(edata.pinnip)
