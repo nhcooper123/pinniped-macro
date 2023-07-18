@@ -15,21 +15,21 @@ edata.pinnip <- getEventData(tree.pinnip, here::here("diversification/analyses/f
 
 summary(edata.pinnip)
 
-png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_speciation.png"), width = 4, height = 5.5, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil-only-with-sampled-ancestors/phylo-rates-pinnipedia-fossil-only-full-speciation.png"), width = 4, height = 5.5, units = "in", res = 300)
 a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
 ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 addBAMMlegend(a, location = "left")
 dev.off()
 
-png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_extinction.png"), width = 4, height = 5.5, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil-only-with-sampled-ancestors/phylo-rates-pinnipedia-fossil-only-full-extinction.png"), width = 4, height = 5.5, units = "in", res = 300)
 a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
 ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 addBAMMlegend(a, location = "left")
 dev.off()
 
-png(here::here("supplemental/figures/diversification/fossil_only_with_sampled_ancestors/phylo_rates_pinnipedia_fossil_only_full_netdiv.png"), width = 4, height = 5.5, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/fossil-only-with-sampled-ancestors/phylo-rates-pinnipedia-fossil-only-full-netdiv.png"), width = 4, height = 5.5, units = "in", res = 300)
 a <- plot.bammdata(edata.pinnip, lwd = 2, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
 ## tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)

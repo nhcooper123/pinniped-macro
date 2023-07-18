@@ -17,19 +17,19 @@ post_probs <- table(mcmcout$N_shifts) / nrow(mcmcout)
 
 summary(edata.pinnip)
 
-png(here::here("supplemental/figures/diversification/main_analysis/phylo_rates_pinnipedia_noanc_speciation.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/main-analysis/phylo-rates-pinnipedia-noanc-speciation.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)]);axisPhylo()
 tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 dev.off()
 
-png(here::here("supplemental/figures/diversification/main_analysis/phylo_rates_pinnipedia_noanc_extinction.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/main-analysis/phylo-rates-pinnipedia-noanc-extinction.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "e");axisPhylo()
 tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
 dev.off()
 
-png(here::here("supplemental/figures/diversification/main_analysis/phylo_rates_pinnipedia_noanc_netdiv.png"), width = 9, height = 9, units = "in", res = 300)
+png(here::here("supplemental/figures/diversification/main-analysis/phylo-rates-pinnipedia-noanc-netdiv.png"), width = 9, height = 9, units = "in", res = 300)
 plot.bammdata(edata.pinnip, lwd = 2, legend = TRUE, xlim = c(0, 45), pal = parula(20)[-c(18:20)], spex = "netdiv");axisPhylo()
 tiplabels(edata.pinnip$tip.label, frame = "none", bg = NULL, adj = c(-0.1, 0.5), cex = 0.75)
 addBAMMshifts(edata.pinnip)
