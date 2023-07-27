@@ -5,8 +5,8 @@
 \documentclass[a4paper, 12pt]{article}
 \usepackage[margin=2cm]{geometry}
 \usepackage[osf]{mathpazo} % palatino
-%\usepackage[round]{natbib} % author-year citations
-\usepackage[superscript,biblabel,nomove]{cite} % for superscript citations
+\usepackage[round]{natbib} % author-year citations
+%\usepackage[superscript,biblabel,nomove]{cite} % for superscript citations
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{parskip} 
@@ -56,22 +56,62 @@
 \newpage
 \begin{landscape}
 \section{Metatree}
+
+\subsection{Supplementary methods}
+
+Our phylogeny was constructed using the metatree approach \citep{lloyd2021total,lloyd2016probabilistic}. Morphological and molecular matrices from source studies were compiled, checked for taxonomical accuracy, and reanalysed to produce a single global matrix, which was then used to produce the final, time-scaled phylogeny. 
+
+\subsubsection{Morphological and molecular character data}
+
+We collated 44 morphological character matrices from 43 studies published between 1987 and 2023. All matrices were accessible in the original papers or electronic supplementary materials, or located in a data repository e.g. Morphobank. We retained the original character weighting and ordering schemes, but removed any molecular data. Our taxonomy follows the Society for Marine Mammalogy Committee on Taxonomy list of marine mammal species and subspecies (Committee on Taxonomy 2022), with the exception of Arctocephalus philippii and A. townsendi, which we retain as separate species following Lopes et al. (\citeyear{lopes2021phylogenomic}), giving a total of 34 extant taxa.
+
+We also downloaded the molecular alignment of Fulton and Strobeck (\citeyear{fulton2010multiple}) which consists of 15 nuclear and 13 mitochondrial genes for 21 species of pinniped and seven non-pinniped outgroups. In cases where two individuals had been sampled for one species, we removed the least complete sequence.
+
+\subsubsection{Metadata and taxonomic reconciliation} 
+
+We manually checked and updated where necessary the taxonomy of all pinniped taxa on the Paleobiology Database (PBDB; https://paleobiodb.org), adding missing names and synonymizing where appropriate. We then generated custom XML files for each source study, with every operational taxonomic unit (OTU) reconciled to its constituent taxon in the PBDB \citep{peters2016paleobiology}. We checked supraspecific OTUs in source study character matrices to determine if they were coded from a particular species of that genus, and amended this on the XML file (not the original NEXUS file) if required. Additionally, we recorded whether the matrix was based on a previous study (and if so, which study it was based on) to determine relative weighting or study redundancy when assembling the final Matrix Representation with Parsimony (MRP) matrix.
+
+\subsubsection{Reanalysis of morphological and molecular matrices} 
+
+We reanalysed each morphological character-taxon matrix using the original settings of each study in TNT v.1.6 \citep{goloboff2008tnt}. Depending on matrix size, we either performed searches using implicit enumeration (an exact search) or multiple rounds of TNT’s “New Technology Searches”, each starting with a random seed. We then combined trees from each replicate and performed a final round of tree bisection-reconnection to ensure all most parsimonious trees (MPTs) were sampled. Each set of MPTs was then exported using Matrix Representation and duplicate columns removed as, under parsimony, there is no relationship between the number of times a clade is sampled in the profile of most parsimonious solutions and support for that clade. 
+ 
+To analyze the molecular alignment of Fulton and Strobeck (\citeyear{fulton2010multiple}) we used MrBayes v.3.2 \citep{ronquist2012mrbayes} using the same partitioning strategy and set of models of molecular evolution as in the source study. We performed two runs, each with four chains, and allowed the analysis to run until topological convergence was achieved. We then used matrix representation to code 1000 randomly sampled trees from the post-burnin posterior distribution. We reduced the resulting matrix to unique bipartitions only but, in contrast with the morphological datasets, weighted them in proportion to the frequency in which they appeared as this is a measure of clade support in Bayesian phylogenetics.
+
+\subsubsection{Global MRP matrix assembly} 
+
+We combined MRP matrices from source studies into a global matrix encompassing all taxa using the Metatree function from the metatree R package (available from GitHub at github.com/graemetlloyd/metatree). The MRP matrix for the posterior sample of trees from the Fulton and Strobeck (\citeyear{fulton2010multiple}) alignment was specified as the backbone constraint, ensuring that the set of relationships among extant taxa specified by molecular data were upweighted relative to those based on morphology alone. We note that analysis of the limited mitochondrial data currently available for the Southern fur seals (\textit{Arctocephalus} spp.) has frequently resulted in their polyphyly, specifically the placement of \textit{A. pusillus} outside of \textit{Arctocephalus}. We therefore appended an upweighted matrix representation of the topology produced by Lopes et al. (\citeyear{lopes2021phylogenomic}) to this matrix. Character weights for the morphological topologies were based on three attributes of source studies: date of publication; study non-independence; and matrix size (measured in number of MRP characters), with older, frequently reused, and larger datasets down-weighted relative to younger, more recently updated, or smaller matrices. A taxonomy tree based on the PBDB taxonomy was included as previous work has demonstrated that this improves topological inference when datasets contain few overlapping taxa \citep{lloyd2021total}, but weights were always set to 1 such that source trees always over-ruled taxonomy.
+
+\subsubsection{Metatree inference} 
+
+We analyzed the safely reduced MRP matrix in TNT \citep{goloboff2008tnt}. We performed 1000 independent parallel tree searches using the xmult option for multiple replications using sectorial searches, drifting, ratchet and fusing invoked at level 1, with a maximum of 1000 trees held in memory \citep{goloboff2008tnt}. After parsing the output of the 1000 searches to remove suboptimal solutions and redundant topologies using custom R scripts (see xxx), we reinserted safely removed taxa into each of the most parsimonious trees using the SafeTaxonomicReinsertion function in the Claddis R package \citep{lloyd2016probabilistic} and constructed strict and majority rule consensus trees from the final sample of shortest trees using the consensus function in the ape R package \citep{paradis2019ape}.
+
+\subsubsection{Tip dating analyses} 
+
+We used BEAST v.2.6.6 \citep{bouckaert2014beast} to time-scale our pinniped metatree. We used the 50\% majority rule consensus metatree to derive a series of topological constraints in our BEAST analysis. To provide information on relative branch lengths for extant taxa, we employed an augmented version of the Fulton and Strobeck (\citeyear{fulton2010multiple}) molecular alignment containing  sequence data published since 2010 for species in the alignment that lacked particular loci, as well as sequences for all pinniped taxa not sampled, resulting in an alignment for 36 extant or recently extinct pinniped taxa. All molecular data were sampled from Genbank (Table X). To obtain an appropriate partitioning scheme and set of evolutionary models for subsequent analysis we used PartitionFinder v. 2.1 \citep{lanfear2017partitionfinder}, resulting in a 6 partition model. Finally, we obtained stratigraphic information for each fossil taxon, where available (Table \ref{table-stratigraphy}). We first obtained the Stage of first occurrence from the PBDB and then refined this with data from the primary literature, where available (Table \ref{table-stratigraphy}). The optimized relaxed molecular clock was employed. Occurrence time was specified as the beginning and end dates for the Stage of first occurrence, based on the 2018 International Commission on Stratigraphy updated chronostratigraphic chart. 
+ 
+We used the Fossilized Birth Death Process \citep{heath2014fossilized,gavryushkina2017bayesian} as a prior on tree shape, which requires that we specify a series of priors on the generating parameters. We set an exponential prior the net diversification rate (r \approx exponential[1:0]), and a beta prior on relative extinction rates ($\epsilon$ \approx [2, 1]) that gives highest prior weight to relative extinction rates of 1 ($\lambda = \mu$) consistent with Marshall's 3rd paleobiological law, which states that extinction approximately equals speciation over the geologic history of clades \citep{marshall2017five}. For the fossil sampling probability (i.e. the probability that a species is fossilized prior to its extinction and is subsequently sampled) we placed a beta prior ($s$ \approx $\beta$ [1.15,2.0]) that places most weight on low probabilities of sampling. For the origin of the Fossilized Birth Death Process, we used an offset exponential prior (origin \approx exponential[28.1,0.369]) with the lower limit corresponding to the oldest fossil occurrence in our sample and the rate parameter giving a 95\% upper quantile corresponding to the first appearance of crown carnivorans in the fossil record \citep{tomiya2021carnivorous}. We set $\rho$ to 1 as all extant taxa are sampled.
+
+\subsubsection{MCMC runs}
+
+We performed two MCMC runs of 250 million generations, sampling every 250,000 steps. We monitored convergence of the three multiDistchains on the same target parameter distributions by visually inspecting posterior traces using Tracer v.1.7 and by computing Potential Scale Reduction Factors \citep{gelman1992inference} using the gelman:diag function in the coda R package \citep{plummer2006coda}. We checked effective sample sizes using Tracer to ensure good mixing of all parameters. To summarize the posterior sample of trees, we first attempted to produce a clade credibility tree (MCC), i.e. the tree with the highest product of posterior node probabilities, annotated with mean branch lengths and 95\% highest posterior density (HPD) intervals using the treeannotator program from the BEAST suite of software. For paleontological datasets, the combination of high phylogenetic uncertainty combined with wide stratigraphic uncertainty intervals can lead to scenarios where annotation with mean branch lengths can cause the MCC tree topology to exhibit negative branch lengths (i.e. scenarios in which taxa occur prior to their divergence from their sister taxon). To avoid this, we found the median tree under the Kendall-Colijn metric using the multiDist function from the treespace package \citep{jombart2017treespace}. We set $\lambda$ to 0.5, which ensures that topology and branch lengths are considered equally. The median tree was then used in downstream analysis, but annotated with 95\% HPD intervals computed using treeannotator with the median tree set as the target.    
+
+%-----------------------------------------------------------------------------------
 \subsection{Taxon list}
 
 \input{figures/table-taxa.tex}
 \end{landscape}
-
+%-----------------------------------------------------------------------------------
 \newpage
 \subsection{Institutional abbreviations}
 \input{figures/table-institutions.tex}
-
+%-----------------------------------------------------------------------------------
 \newpage
 \begin{landscape}
 \subsection{Stratigraphic ranges}
 
 \input{figures/table-stratigraphy.tex}
 \end{landscape}
-
+%-----------------------------------------------------------------------------------
  
 \newpage
 \subsection{References for taxon list and stratigraphic ranges}
@@ -109,6 +149,7 @@
 \item Downs, T. 1956. A new pinniped from the Miocene of Southern California: with remarks on the Otariidae. Journal of Paleontology 30:115–131.
 \item Dubrovo, I. A. 1981. A new subfamily of fossil seals (Pinnipedia, Kamtschatarctinae subfam. nov.). Doklady Earth Science Sections 256:202–206.
 \item Ehret, D. J., B. J. Macfadden, D. S. Jones, T. J. Devries, D. A. Foster, and R. Salas-Gismondi. 2012. Origin of the white shark \textit{Carcharodon} (Lamniformes: Lamnidae) based on recalibration of the Upper Neogene Pisco Formation of Peru: white shark evolution. Palaeontology 55:1139–1153.
+\item Eichwald, C. E. V. 1853. Lethaea rossica, ou, Paléontologie de la Russie,. E. Schweizerbart, Stuttgart.
 \item Erxleben, J. C. P. 1777. Systema regni animalis per classes, ordines, genera, species, varietates: cvm synonymia et historia animalivm: Classis I. Mammalia. Impensis Weygandianis, Lipsiae.
 \item Everett, C. J., T. A. Dem\'{e}r\'{e}, and A. R. Wyss. 2023. A new species of \textit{Pinnarctidion} from the Pysht Formation of Washington State (U.S.A.) and a phylogenetic analysis of basal pan-pinnipeds (Eutheria, Carnivora). Journal of Vertebrate Paleontology 42:e2178930.
 \item Fabricius, O. 1791. Udfarlig beskrivelse over de Gronlandske saele. Skrivter af Naturhistorie-selskabet 1:73–170.
@@ -140,12 +181,12 @@
 \item Kohno, N., L. G. Barnes, and K. Hirota. 1995. Miocene fossil pinnipeds of the genera \textit{Prototaria} and \textit{Neotherium} (Carnivora; Otariidae; Imagotariinae) in the North Pacific Ocean: Evolution, relationships and distribution. Island Arc 3:285–308.
 \item Koretsky, I., A. 2001. Morphology and systematics of Miocene Phocinae (Mammalia: Carnivora) from Paratethys and the North Atlantic region. Geologica Hungarica: Series Palaeontologica 54:1–109.
 \item Koretsky, I. A. 2003. New finds of Sarmatian seals (Mammalia, Carnivora, Phocinae) from southern Hungary. Advances in Vertebrate Paleontology 'Hen to Panta' 63–70.
+\item Koretsky, I. A., and C. E. Ray. 2008. Phocidae of the Pliocene of Eastern USA. Virginia Museum of Natural History Special Publication 14:81–140.
 \item Koretsky, I. A., and D. P. Domning. 2014. One of the oldest seals (Carnivora, Phocidae) from the Old World. Journal of Vertebrate Paleontology 34:224–229.
 \item Koretsky, I. A., and P. Holec. 2002. A primitive seal (Mammalia: Phocidae) from the Early Middle Miocene of Central Paratethys. Smithsonian Contributions to Paleobiology 93:163–178.
 \item Koretsky, I. A., and S. J. Rahmat. 2013. First Record of Fossil Cystophorinae (Carnivora, Phocidae): Middle Miocene Seals from the Northern Paratethys. Rivista Italiana di Paleontologia e Stratigrafia 119:325–350.
 \item Koretsky, I. A., and S. J. Rahmat. 2015a. A new species of the subfamily Devinophocinae (Carnivora, Phocidae) from the central Paratethys. Rivista Italiana di Paleontologia e Stratigrafia 121:31–47.
-\item Koretsky, I. A., and C. E. Ray. 2008. Phocidae of the Pliocene of Eastern USA. Virginia Museum of Natural History Special Publication 14:81–140.
-\item Koretsky, I. A., N. Peters, and S. Rahmat J. 2015b. New species of \textit{Praepusa} (Carnivora, Phocidae, Phocinae) from the Netherlands supports east to west Neogene dispersal of true seals \textit{Praepusa} (Carnivora, Phocidae, Phocinae). Vestnik Zoologii 49:57–66.
+\item Koretsky, I. A., N. Peters, and S. Rahmat J. 2015. New species of \textit{Praepusa} (Carnivora, Phocidae, Phocinae) from the Netherlands supports east to west Neogene dispersal of true seals \textit{Praepusa} (Carnivora, Phocidae, Phocinae). Vestnik Zoologii 49:57–66.
 \item Kretzoi M. 1941. Foka-maradvanyok az erdi Szarmatabol. Foldtani Kozlony 71:274–279.
 \item Leidy, J. 1859. Remarks on \textit{Dromatherium sylvestre} and \textit{Ontocetus emmonsi}. Proceedings of the Academy of Natural Sciences of Philadelphia 11:161–164.
 \item Lesson, R. P. 1826. Sur le phogue leopard de mer (sea leopard) des orcades australes; par James Weddel. Bulletin des Sciences Naturelles et de Geologie 7:437–438.
@@ -382,7 +423,7 @@ Taxon names have been removed from Figures Y-Y for readability.
 %-----------------------------------------------------------------------------------
 \subsection{Detailed BioGeoBEARS outputs}
 
-The plots below show the detailed results from the BioGeoBEARS analyses \cite{matzke2013probabilistic}. Models are either the dispersal-extinction-cladogenesis (DEC) model \cite{ree2008maximum} or the DEC+J model \cite{matzke2014model}. 
+The plots below show the detailed results from the BioGeoBEARS analyses \citep{matzke2013probabilistic}. Models are either the dispersal-extinction-cladogenesis (DEC) model \citep{ree2008maximum} or the DEC+J model \citep{matzke2014model}. 
 The nine different areas used were: (A) Northern Pacific Ocean, (B) Eastern South Pacific Ocean, (C) Australasian coastal waters, (D) Northern Atlantic Ocean, (E) Southern Atlantic Ocean, (F) Indian Ocean, (G) Southern Ocean, (H) Arctic Ocean, and (I) Paratethys/Mediterranean Ocean. Note that we excluded \textit{Pusa sibirica} (Lake Baikal seal) because of their isolated biogeography (they are only found in Lake Baikal). 
 Legends and taxon names have been removed from Figures \ref{fig-all-dec-ml}-\ref{fig-extant-decj-pie-unlikely} for readability. 
 A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in Figure \ref{fig-all-tree} for all taxa, Figure \ref{fig-fossil-tree} for fossil taxa only, and Figure \ref{fig-extant-tree} for extant taxa only.
@@ -639,9 +680,9 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 % Refs
 %----------------------------------------
 \newpage
-\subsection{Supplementary references}
+\section{Supplementary references}
  
 \bibliography{pinnipeds}
-\bibliographystyle{vancouver}
+\bibliographystyle{evolution}
 
 \end{document}
