@@ -38,48 +38,48 @@ The file structure of that repository is as follows:
 ### InputData
 Folder containing the following subfolders:
 
-1. **Molecular_Data** Folder containing two subdirectories (fulton and Lopes), each of which contains a further two subdirectories (mrp and xml) that contain the Matrix Representations with Parsimony (MRP) nexus files and XML files (see below), respectivly, for the two molecular studies used as backbone constraints
-2. **MRP** Matrix Representations with Parsimony (MRPs) obtained by re-analysing each morphological input data set under parsimony and retaining only unique biparitions until all such biparitions have been sampled.
-3. **NEXUS** The original character-taxon matrices for each morphological input data set.
-4. **TNT** TNT format input files used for reanalysis of each morphological input dataset. Each file contains the relevant commands to run the analyses.
-5. **XML** XML files that record important metadata about each input data set, particularly data set dependence and taxonomic reconciliation.
+1. **Molecular_Data**. Folder containing two subdirectories (fulton and Lopes), each of which contains a further two subdirectories (mrp and xml) that contain the Matrix Representations with Parsimony (MRP) nexus files and XML files (see below), respectivly, for the two molecular studies used as backbone constraints
+2. **MRP**. Matrix Representations with Parsimony (MRPs) obtained by re-analysing each morphological input data set under parsimony and retaining only unique biparitions until all such biparitions have been sampled.
+3. **NEXUS**. The original character-taxon matrices for each morphological input data set.
+4. **TNT**. TNT format input files used for reanalysis of each morphological input dataset. Each file contains the relevant commands to run the analyses.
+5. **XML**. XML files that record important metadata about each input data set, particularly data set dependence and taxonomic reconciliation.
 
 ### metatree_files
 Folder containing the metatree data organised in the following subfolders:
 
-1. **Consensus_trees** Folder containing Strict (SCC) and Majority Rule (MRC) trees before (STR_***) and after (no prefix) safely reinserting taxa
-2. **Files** All files output by running the metatree function to assemble a reconciled complete MRP matrix over all input datasets:
-    - **Character weights** weights for each character
-    - **DataSetWeights.txt** information of the contribution of each dataset to the overall analysis 
-    - **FULL.nex** MRP files in nexus format containing all taxa (not used in main analysis)
-    - **FULL.tnt** MRP files in tnt format containing all taxa (not used in main analysis)
-    - **STR.nex** Safely reduced input files in nexus format.
-    - **STR.tnt** Safely reduced input files in tnt format. The tnt format file is the one used in main analyses.
-3. **STR.tnt** Text file containing safely removed taxa and the rules used to reinsert them
+1. **Consensus_trees**. Folder containing Strict (SCC) and Majority Rule (MRC) trees before (STR_***) and after (no prefix) safely reinserting taxa
+2. **Files**. All files output by running the metatree function to assemble a reconciled complete MRP matrix over all input datasets:
+    - **Character weights**. Weights for each character
+    - **DataSetWeights.txt**. Information of the contribution of each dataset to the overall analysis 
+    - **FULL.nex**. MRP files in nexus format containing all taxa (not used in main analysis)
+    - **FULL.tnt**. MRP files in tnt format containing all taxa (not used in main analysis)
+    - **STR.nex**. Safely reduced input files in nexus format.
+    - **STR.tnt**. Safely reduced input files in tnt format. The tnt format file is the one used in main analyses.
+3. **STR.tnt**. Text file containing safely removed taxa and the rules used to reinsert them
     - **TaxonomyTree.tre** Newick string containing the paleobiology database taxonomy for PanPinnipeds in tree form. Used in the metatree analysis as a very downweighted input.
 5. **MPTS** Folder containing all most parsimonious trees before and after Safe Taxonomic Reinsertion
 6. **tnt** MPTs from each of 1000 independent TNT searches (.tnt) and associated search info from screen output (.txt) 
 
 ### Scripts
 
-See above
+See `metatree-scripts/` description above.
 
 ### TimeTree
 Files and Folders related to BEAST time-tree inference. Organized as follows:
 
-1. **BEAST_Run** Folder containing input xml file, log and tree files from the two independent MCMC analyses, combined post-burnin log and tree files, and the median tree from the combined posterior sample.
-1. **partitionFinder** PartitionFinder input and output files used to identify the appropriate partitioning scheme and evolutionary models for the augmented Fulton and Strobeck alignment. 
-1. **strictclockru** xml and output files from a short analysis of extant pinnipeds only under a strict molecular clock. The posterior mean root height divided by the approximate age of crown pinnipeds was used to define a mean for the lognormal prior on the relaxed molecular clock in the main analysis
-1. **MRC.tre** The majority Rule Consensus metatree used to derive topological constraints for the BEAST analysis
-1. **pinnipeds_extant_beast.nex** Augmented version of the Fulton and Strobeck alignment used in BEAST analysis
-1. **Taxa_FAD.csv** Stratigraphic uncertainty associated with the first appearances of fossil taxa. Used to define age ranges for fossils for the Fossilized Birth Death analysis.
+1. **BEAST_Run**. Folder containing input xml file, log and tree files from the two independent MCMC analyses, combined post-burnin log and tree files, and the median tree from the combined posterior sample.
+1. **partitionFinder**. PartitionFinder input and output files used to identify the appropriate partitioning scheme and evolutionary models for the augmented Fulton and Strobeck alignment. 
+1. **strictclockru**. xml and output files from a short analysis of extant pinnipeds only under a strict molecular clock. The posterior mean root height divided by the approximate age of crown pinnipeds was used to define a mean for the lognormal prior on the relaxed molecular clock in the main analysis
+1. **MRC.tre**. The majority Rule Consensus metatree used to derive topological constraints for the BEAST analysis
+1. **pinnipeds_extant_beast.nex**. Augmented version of the Fulton and Strobeck alignment used in BEAST analysis
+1. **Taxa_FAD.csv**. Stratigraphic uncertainty associated with the first appearances of fossil taxa. Used to define age ranges for fossils for the Fossilized Birth Death analysis.
 
 ### TimeTreeInference
 Folder containing the R scripts and temporal data used to build the timetrees as well as the following subfolders:
 
-1. **Dangerous** Subfolder containing the results for the Dangerous timetree analyses.
-1. **Risky** Subfolder containing the results for the Risky timetree analyses.
-1. **Safe** Subfolder containing the results for the Safe timetree analyses.
+1. **Dangerous**. Subfolder containing the results for the Dangerous timetree analyses.
+1. **Risky**. Subfolder containing the results for the Risky timetree analyses.
+1. **Safe**. Subfolder containing the results for the Safe timetree analyses.
 
 
 -------
