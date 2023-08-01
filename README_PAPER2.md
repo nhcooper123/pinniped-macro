@@ -1,0 +1,27 @@
+### **Paper 2**: Pinniped macroevolution
+
+> **Paper 2**: Park, T., Burin, G., Lazo-Cancino, D., Rees, J.P.G., Rule, J.P., Slater, G.J., Cooper, N. in review. Macroevolutionary patterns in pinnipeds. XXX, XX, XX-XX. DOI: XXX. 
+
+- Data used in the analyses for the paper
+    1. *median_tree.tre*. This is the tree used as a starting point for all the diversification rate and biogeography analyses.
+
+- Diversification dynamics analyses
+    1. *pinniped_median_full.tre* - full phylogeny.
+    1. *pinniped_median_extant.tre* - phylogeny with only extant taxa.  
+    1. *pinniped_median_fossil.tre* - phylogeny with only fossil taxa.
+    1. *pinniped_median_noanc.tre* - full phylogeny but with sampled ancestors removed.
+    1. *pinniped_median_fossil_noanc.tre* - phylogeny with only fossil taxa but with sampled ancestors removed.
+
+- Biogeography
+    1. *pinniped-tree-all_9areas.tre* - full phylogeny for taxa in the biogeography analyses.       
+    1. *pinniped-tree-extant_9areas.tre* - phylogeny for extant taxa in the biogeography analyses.
+    1. *pinniped-tree-fossil_9areas.tre* - phylogeny for fossil taxa in the biogeography analyses.
+    1. *pinniped-all-geography_9areas.txt* - geography file for all taxa in the biogeography analyses.
+    1. *pinniped-extant-geography_9areas.txt* - geography file for extant taxa in the biogeography analyses.
+    1. *pinniped-fossil-geography_9areas.txt* - geography file for fossil taxa in the biogeography analyses.
+    1. *timeperiods-all_9areas.txt* - file defining the time periods for time stratified analyses.
+    1. *pinniped_areas_new_GB_phylip-JRule_edit-nocomments.txt* - raw geography data.
+
+- Pinniped_metatree
+    - All code and data required to infer the metatree.
+    - See README inside this folder for more details.
