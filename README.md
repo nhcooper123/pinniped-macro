@@ -124,11 +124,11 @@ Code for the diversification rate analyses is within the `diversification/` fold
 ### Data
 All data are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq), but also within the  `data/` folder. These consist of the following:
 
-1. *pinniped_median_full.tre* - full phylogeny.
-1. *pinniped_median_extant.tre* - phylogeny with only extant taxa.  
-1. *pinniped_median_fossil.tre* - phylogeny with only fossil taxa.
-1. *pinniped_median_noanc.tre* - full phylogeny but with sampled ancestors removed.
-1. *pinniped_median_fossil_noanc.tre* - phylogeny with only fossil taxa but with sampled ancestors removed.
+1. **pinniped_median_full.tre** - full phylogeny.
+1. **pinniped_median_extant.tre** - phylogeny with only extant taxa.  
+1. **pinniped_median_fossil.tre** - phylogeny with only fossil taxa.
+1. **pinniped_median_noanc.tre** - full phylogeny but with sampled ancestors removed.
+1. **pinniped_median_fossil_noanc.tre** - phylogeny with only fossil taxa but with sampled ancestors removed.
 
 If you use the data please cite as follows: 
 >  Travis Park; Gustavo Burin; Graham J Slater; Natalie Cooper (2022). Data from the "Back to the water" project [Data set]. Natural History Museum. 
@@ -142,18 +142,23 @@ The fossilBAMM analyses are in the `analyses/` folder organised in folders accor
 3. `run_info_pinnipedia_noanc.txt`
 4. `event_data_pinnipedia_noanc.txt`
 
-This folder also contains sensitivity analyses where the priors were varied from 
+This folder also contains sensitivity analyses (withing the folders `sensitivity_analyses` and `sensitivity_analyses_with_sampled_ancestors`) where the analyses were repeated but using priors of 0.01, 0.1, 0.5, 2, or 10. Within the sensitivity analyses folders there are subfolders for each different prior and then within these the same files as described above for the main analyses.
 
-`sensitivity_analyses_with_sampled_ancestors`
+#### BAMMTools analyses in R
 
-#### `analyses/`
+These scripts process the outputs in the `analyses/` folder using BAMMTools in R to extract speciation, extinction and diversification rates, credicle rate shifts and plotting etc.
+
+1. **fossilbamm_results_full.R** - code for all taxa with sampled ancestors.
+2. **fossilbamm_results_noanc.R** - code for all taxa without sampled ancestors.
+3. **fossilbamm_results_extant.R** - code for extant taxa.
+1. **fossilbamm_results_fossil_only.R** - code for fossil taxa.
+3. **fossilbamm_results_fossil_only_with_sampled_ancestors.R** - code for fossil taxa with sampled ancestors.
+1. **fossilbamm_results_full_sensitivity.R** - code for sensitivity analyses on all taxa with sampled ancestors.
+1. **fossilbamm_results_noanc_sensitivity.R** - code for sensitivity analyses on all taxa without sampled ancestors.
 
 -------
 ## Other folders
 
-* `/figures` contains the figures.
-* `/outputs` contains the tables.
-* `/img` contains the silhouettes from from `PhyloPic.org` needed for plotting. Contributed by: XXX
 * `/supplemental` contains the ESM files/figures and tables in LaTeX format.
 
 -------
