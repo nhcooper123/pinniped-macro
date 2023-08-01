@@ -13,7 +13,7 @@ To cite the paper:
 To cite this repo: 
 >  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1.
 
-![alt text](https://github.com/nhcooper123/pinniped-macro/raw/pinnped_tree_2.jpg)
+![alt text](https://github.com/nhcooper123/pinniped-macro/main/raw/pinnped_tree_2.jpg)
 
 This paper has three main components, a metatree of Pinnipedia, biogeographical analyses and diversification analyses.
 
