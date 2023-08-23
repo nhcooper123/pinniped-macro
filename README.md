@@ -20,7 +20,12 @@ This paper has three main components, a metatree of Pinnipedia, biogeographical 
 -------
 ## Metatree
 
-Code for the metatree is within the `metatree-scripts/` folder. Note that the data etc. are too large for GitHub so are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq) within the `Pinniped_metatree` folder. The file structure of that repository is included below for completeness.
+Code for the metatree is within the `metatree-scripts/` folder. Note that the data etc. are too large for GitHub so are available from [Zenodo](https://doi.org/10.5281/zenodo.8276115). The file structure of that repository is included below for completeness.
+
+If you use the data please cite as follows: 
+>  Travis Park and Graham Slater (2023). Pinniped metatree data and scripts (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8276115
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8276115.svg)](https://doi.org/10.5281/zenodo.8276115)
 
 The set of R scripts used to generate the metatree are:
 
@@ -32,11 +37,6 @@ The set of R scripts used to generate the metatree are:
 2. **runtntoutputcollator.R** Utility script to read the output from TNT analysis of the ensemble MRP matrix, find all unique shortest trees, and assemble a combined MPT file, consensus trees, and perform safe taxonomic reinsertion. 
 
 ### `Pinniped_metatree` folder ([Zenodol](https://doi.org/10.5281/zenodo.8276115))
-
-If you use the data please cite as follows: 
->  Travis Park and Graham Slater (2023). Pinniped metatree data and scripts (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8276115
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8276115.svg)](https://doi.org/10.5281/zenodo.8276115)
 
 The file structure of that repository is as follows: 
 
