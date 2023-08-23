@@ -1,6 +1,6 @@
 ### **Paper 2**: Pinniped macroevolution
 
-> **Paper 2**: Park, T., Burin, G., Lazo-Cancino, D., Rees, J.P.G., Rule, J.P., Slater, G.J., Cooper, N. in review. Macroevolutionary patterns in pinnipeds. XXX, XX, XX-XX. DOI: XXX. 
+> **Paper 2**: Park, T., Burin, G., Lazo-Cancino, D., Rees, J.P.G., Rule, J.P., Slater, G.J., Cooper, N. in review. Fossils improve our understanding of evolutionary patterns in pinnipeds. XXX, XX, XX-XX. DOI: XXX. 
 
 - Data used in the analyses for the paper
     1. *median_tree.tre*. This is the tree used as a starting point for all the diversification rate and biogeography analyses.
@@ -22,6 +22,8 @@
     1. *timeperiods-all_9areas.txt* - file defining the time periods for time stratified analyses.
     1. *pinniped_areas_new_GB_phylip-JRule_edit-nocomments.txt* - raw geography data.
 
-- Pinniped_metatree
-    - All code and data required to infer the metatree.
-    - See README inside this folder for more details.
+- Pinniped metatree
+
+For technical reasons we could not upload this here so please see https://doi.org/10.5281/zenodo.8276115.
+
+>  Travis Park and Graham Slater (2023). Pinniped metatree data and scripts (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8276115
