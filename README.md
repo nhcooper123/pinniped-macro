@@ -36,7 +36,7 @@ The set of R scripts used to generate the metatree are:
 2. **process_beast_output.R** Script to read combined, post-burnin output from beast and find the median tree under the Kendall-Colijn distance metric. This tree is used in subsequent macroevolutionary analyses.
 2. **runtntoutputcollator.R** Utility script to read the output from TNT analysis of the ensemble MRP matrix, find all unique shortest trees, and assemble a combined MPT file, consensus trees, and perform safe taxonomic reinsertion. 
 
-### `Pinniped_metatree` folder ([Zenodol](https://doi.org/10.5281/zenodo.8276115))
+### `Pinniped_metatree` folder ([Zenodo](https://doi.org/10.5281/zenodo.8276115))
 
 The file structure of that repository is as follows: 
 
