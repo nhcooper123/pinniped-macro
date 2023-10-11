@@ -29,7 +29,7 @@
 % Title page information
 %-------------------------------------------------------------------------------
 
-\title{Supplementary Materials from: \textit{Fossils improve our understanding of evolutionary patterns in pinnipeds}} 
+\title{Supplementary Materials from: \textit{Macroevolutionary patterns in pinnipeds}} 
 
 \author{}
 
@@ -86,7 +86,7 @@ We analyzed the safely reduced MRP matrix in TNT \citep{goloboff2008tnt}. We per
 
 \subsubsection{Tip dating analyses} 
 
-We used BEAST v.2.6.6 \citep{bouckaert2014beast} to time-scale our pinniped metatree. We used the 50\% majority rule consensus metatree to derive a series of topological constraints in our BEAST analysis. To provide information on relative branch lengths for extant taxa, we employed an augmented version of the Fulton and Strobeck (\citeyear{fulton2010multiple}) molecular alignment containing  sequence data published since 2010 for species in the alignment that lacked particular loci, as well as sequences for all pinniped taxa not sampled, resulting in an alignment for 36 extant or recently extinct pinniped taxa. All molecular data were sampled from Genbank (Table \ref{table-genbank}). To obtain an appropriate partitioning scheme and set of evolutionary models for subsequent analysis we used PartitionFinder v. 2.1 \citep{lanfear2017partitionfinder}, resulting in a 6 partition model. Finally, we obtained stratigraphic information for each fossil taxon, where available (Table \ref{table-stratigraphy}, references in section \ref{sec:refs2} of this document). We first obtained the Stage of first occurrence from the PBDB and then refined this with data from the primary literature, where available (Table \ref{table-stratigraphy}). The optimized relaxed molecular clock was employed. Occurrence time was specified as the beginning and end dates for the Stage of first occurrence, based on the 2018 International Commission on Stratigraphy updated chronostratigraphic chart. 
+We used BEAST v.2.7.4 \citep{bouckaert2014beast} to time-scale our pinniped metatree. We used the 50\% majority rule consensus metatree to derive a series of topological constraints in our BEAST analysis. To provide information on relative branch lengths for extant taxa, we employed an augmented version of the Fulton and Strobeck (\citeyear{fulton2010multiple}) molecular alignment containing  sequence data published since 2010 for species in the alignment that lacked particular loci, as well as sequences for all pinniped taxa not sampled, resulting in an alignment for 36 extant or recently extinct pinniped taxa. All molecular data were sampled from Genbank (Table \ref{table-genbank}). To obtain an appropriate partitioning scheme and set of evolutionary models for subsequent analysis we used PartitionFinder v. 2.1 \citep{lanfear2017partitionfinder}, resulting in a 6 partition model. Finally, we obtained stratigraphic information for each fossil taxon, where available (Table \ref{table-stratigraphy}, references in section \ref{sec:refs2} of this document). We first obtained the Stage of first occurrence from the PBDB and then refined this with data from the primary literature, where available (Table \ref{table-stratigraphy}). The optimized relaxed molecular clock was employed. Occurrence time was specified as the beginning and end dates for the Stage of first occurrence, based on the 2018 International Commission on Stratigraphy updated chronostratigraphic chart. 
  
 \noindent We used the Fossilized Birth Death Process \citep{heath2014fossilized,gavryushkina2017bayesian} as a prior on tree shape, which requires that we specify a series of priors on the generating parameters. We set an exponential prior the net diversification rate (r $\sim$ exponential[1:0]), and a beta prior on relative extinction rates ($\epsilon$ $\sim$ [2, 1]) that gives highest prior weight to relative extinction rates of 1 ($\lambda = \mu$) consistent with Marshall's 3rd paleobiological law, which states that extinction approximately equals speciation over the geologic history of clades \citep{marshall2017five}. For the fossil sampling probability (i.e. the probability that a species is fossilized prior to its extinction and is subsequently sampled) we placed a beta prior ($s$ $\sim$ $\beta$ [1.15,2.0]) that places most weight on low probabilities of sampling. For the origin of the Fossilized Birth Death Process, we used an offset exponential prior (origin $\sim$ exponential[28.1,0.369]) with the lower limit corresponding to the oldest fossil occurrence in our sample and the rate parameter giving a 95\% upper quantile corresponding to the first appearance of crown carnivorans in the fossil record \citep{tomiya2021carnivorous}. We set $\rho$ to 1 as all extant taxa are sampled.
 
@@ -292,6 +292,8 @@ We performed two MCMC runs of 250 million generations, sampling every 250,000 st
 
 All major pinniped clades were recovered as monophyletic (Desmatophocidae, Odobenidae, Otariidae, Phocidae). Otarioidea and Phocoidea were also recovered. In stem pan-pinnipeds, both \textit{Enaliarctos} and \textit{Pinnarctidion} are paraphyletic. The topology of the odobenids mostly follows that of the median tree. However, the polytomies of (\textit{Neotherium mirum} + \textit{Kamtschatarctos sinelnikovae} $+$ all more crown-ward odobenids) and (\textit{Aivukus cedrosensis} $+$ \textit{Pliopedia pacifica} $+$ \textit{Protodobenus japonicus} $+$ \textit{Ontocetus emmonsi} $+$ all more crownward odobenids) do differ. In otariids, \textit{Eotaria} spp. and cf. \textit{Thalassoleon} form a polytomy with all other otariids, rather than \textit{Eotaria} diverging before cf. \textit{Thalassoleon} as in the median tree. \textit{Zalophus} spp. form a polytomy and \textit{Hydrarctos lomasiensis} forms a polytomy with \textit{Arctocephalus forsteri}, \textit{A. galapagoensis}, and \textit{A. australis}, rather than being sister to them. In the desmatophocids, \textit{Allodesmus} spp. form a single polytomy, with the exception of \textit{A. kernensis} and \textit{A. demerei}, which form a clade. Within phocids, the devinophocids diverge before the split of Phocinae and Monachinae. The stem of both these subfamilies have polytomies formed of taxa known from fragmentary fossil remains.
 
+% ADD FIGURESSSSS
+
 \subsubsection{Majority rule consensus topology}
 
 All major pinniped clades were recovered as monophyletic (Desmatophocidae, Odobenidae, Otariidae, Phocidae). Otarioidea and Phocoidea were also recovered. In stem pan-pinnipeds, both \textit{Enaliarctos} and \textit{Pinnarctidion} are paraphyletic. The topology is identical to that of the median tree apart from the taxa removed during time-scaling and the following exceptions: \textit{Pliopedia} forms a polytomy with \textit{Protodobenus} and all other more crown-ward odobenids; \textit{Eotaria} spp. and cf. \textit{Thalassoleon} form a polytomy with all other otariids at the base of the clade, rather than \textit{Eotaria} diverging before cf. \textit{Thalassoleon}; \textit{Allodesmus uraiporensis} forms a polytomy with (\textit{A.} sp. cf. \textit{sadoensis} $+$ \textit{A. naroai}) $+$ (\textit{A. sinaoensis} $+$ (\textit{A. kernensis} $+$ \textit{A. demerei})).
@@ -303,9 +305,9 @@ All major pinniped clades were recovered as monophyletic (Desmatophocidae, Odobe
 \section{Diversification dynamics}
 
 The plots below show the results from the fossilBAMM sensitivity analyses. 
-Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-only-full} for readability.
+Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-full-10} for readability.
 
-\subsection{All pinnipeds excluding sampled ancestors}
+\subsection{Excluding sampled ancestors}
 
 \subsubsection{$\lambda_{prior} = 0.01$}
 
@@ -313,7 +315,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses/shifts-0-01/sensitivity-analysis-noanc-0-01.png}
-  \caption{All pinnipeds excluding sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Excluding sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-noanc-0-01}
 \end{figure}
 
@@ -323,7 +325,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses/shifts-0-1/sensitivity-analysis-noanc-0-1.png}
-  \caption{All pinnipeds excluding sampled ancestors. $\lambda_{prior} = 0.1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Excluding sampled ancestors. $\lambda_{prior} = 0.1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-noanc-0-1}
 \end{figure}
 
@@ -333,7 +335,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses/shifts-0-5/sensitivity-analysis-noanc-0-5.png}
-  \caption{All pinnipeds excluding sampled ancestors. $\lambda_{prior} = 0.5$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Excluding sampled ancestors. $\lambda_{prior} = 0.5$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-noanc-0-5}
 \end{figure}
 
@@ -344,7 +346,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses/shifts-2/sensitivity-analysis-noanc-2.png}
-  \caption{All pinnipeds excluding sampled ancestors. $\lambda_{prior} = 2$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Excluding sampled ancestors. $\lambda_{prior} = 2$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-noanc-2}
 \end{figure}
 
@@ -354,11 +356,11 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses/shifts-10/sensitivity-analysis-noanc-10.png}
-  \caption{All pinnipeds excluding sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Excluding sampled ancestors. $\lambda_{prior} = 10$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-noanc-10}
 \end{figure}
 
-\subsection{All pinnipeds including sampled ancestors}
+\subsection{Including sampled ancestors}
 
 \subsubsection{$\lambda_{prior} = 0.01$}
 
@@ -366,7 +368,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses-with-sampled-ancestors/shifts-0-01/sensitivity-analysis-with-sampled-ancestors-0-01.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-0-01}
 \end{figure}
 
@@ -376,7 +378,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses-with-sampled-ancestors/shifts-0-1/sensitivity-analysis-with-sampled-ancestors-0-1.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 0.1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 0.1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-0-1}
 \end{figure}
 
@@ -386,7 +388,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses-with-sampled-ancestors/shifts-0-5/sensitivity-analysis-with-sampled-ancestors-0-5.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 0.5$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 0.5$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-0-5}
 \end{figure}
 
@@ -396,7 +398,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/main-analysis-with-sampled-ancestors/main-analysis-with-sampled-ancestors.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-1}
 \end{figure}
 
@@ -406,7 +408,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses-with-sampled-ancestors/shifts-2/sensitivity-analysis-with-sampled-ancestors-2.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 2$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 2$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-2}
 \end{figure}
 
@@ -416,42 +418,8 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
   \centering
   \includegraphics[width = \linewidth]{figures/diversification/sensitivity-analyses-with-sampled-ancestors/shifts-10/sensitivity-analysis-with-sampled-ancestors-10.png}
-  \caption{All pinnipeds including sampled ancestors. $\lambda_{prior} = 0.01$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
+  \caption{Including sampled ancestors. $\lambda_{prior} = 10$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
   \label{fig-full-10}
-\end{figure}
-
-
-\subsection{Extant pinnipeds only}
-
-% figure
-\begin{figure}[H]
-  \centering
-  \includegraphics[width = \linewidth]{figures/diversification/extant-only/sensitivity-analysis-extant-only.png}
-  \caption{Extant pinnipeds only. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
-  \label{fig-extant-only}
-\end{figure}
-
-
-\subsection{Fossil pinnipeds only}
-\subsubsection{Excluding sampled ancestors}
-
-% figure
-\begin{figure}[H]
-  \centering
-  \includegraphics[width = \linewidth]{figures/diversification/fossil-only/sensitivity-analysis-fossil-only.png}
-  \caption{Fossil pinnipeds only, excluding sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
-  \label{fig-fossil-only-noanc}
-\end{figure}
-
-
-\subsubsection{Including sampled ancestors}
-
-% figure
-\begin{figure}[H]
-  \centering
-  \includegraphics[width = \linewidth]{figures/diversification/fossil-only-with-sampled-ancestors/sensitivity-analysis-fossil-only-full.png}
-  \caption{Fossil pinnipeds only, including sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively.}
-  \label{fig-fossil-only-full}
 \end{figure}
 
 
@@ -478,7 +446,7 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/biogeography-insets-all.png}
-  \caption{Biogeographic state estimations for the major groups within our study. Pies show the relative proportions of different states at that node. See Figure \ref{fig-legend} for legend. States with proportions less than 0.1 are shown in gray. A) All taxa, DEC; B) all taxa, DEC+J (also in main text results); C) fossil taxa, DEC; D) fossil taxa, DEC+J; E) extant taxa, DEC; F) extant taxa, DEC+J.}
+  \caption{Biogeographic state estimations for the major groups within our study. Pies show the relative proportions of different states at that node. See Figure \ref{fig-legend} for legend. States with proportions less than 0.1 are shown in gray. A) DEC; B) DEC+J (also in main text results).}
   \label{fig-nodes}
 \end{figure} 
 
@@ -490,8 +458,8 @@ Taxon names have been removed from Figures \ref{fig-noanc-0-01}-\ref{fig-fossil-
 
 The plots below show the detailed results from the BioGeoBEARS analyses \citep{matzke2013probabilistic}. Models are either the dispersal-extinction-cladogenesis (DEC) model \citep{ree2008maximum} or the DEC+J model \citep{matzke2014model}. 
 The nine different areas used were: (A) Northern Pacific Ocean, (B) Eastern South Pacific Ocean, (C) Australasian coastal waters, (D) Northern Atlantic Ocean, (E) Southern Atlantic Ocean, (F) Indian Ocean, (G) Southern Ocean, (H) Arctic Ocean, and (I) Paratethys/Mediterranean Ocean. Note that we excluded \textit{Pusa sibirica} (Lake Baikal seal) because of their isolated biogeography (they are only found in Lake Baikal). 
-Legends and taxon names have been removed from Figures \ref{fig-all-dec-ml}-\ref{fig-extant-decj-pie-unlikely} for readability. 
-A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in Figure \ref{fig-all-tree} for all taxa, Figure \ref{fig-fossil-tree} for fossil taxa only, and Figure \ref{fig-extant-tree} for extant taxa only.
+Legends and taxon names have been removed from Figures \ref{fig-all-dec-ml}-\ref{fig-all-decj-pie-unlikely} for readability. 
+A full legend is shown in Figure \ref{fig-legend} and taxon names are shown in Figure \ref{fig-all-tree}.
 
 % figure
 \begin{figure}[H]
@@ -501,14 +469,13 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
   \label{fig-legend}
 \end{figure} 
 
-\subsection{All pinnipeds}
 \subsubsection{Impossible states removed}
 
 % figure
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-tree.png}
-  \caption{Phylogeny of all pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
+  \caption{Phylogeny of pinnipeds with taxon names to aid understanding of the following results which have taxon names removed to improve readability.}
   \label{fig-all-tree}
 \end{figure} 
 
@@ -516,7 +483,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-impossible-MLstates.png}
-  \caption{All pinnipeds, DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
+  \caption{DEC model, impossible states removed. Nodes show Maximum Likelihood states.}
   \label{fig-all-dec-ml}
 \end{figure} 
 
@@ -524,7 +491,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-impossible-pies.png}
-  \caption{All pinnipeds, DEC model, impossible states removed. Nodes show relative probabilities of each state.}
+  \caption{DEC model, impossible states removed. Nodes show relative probabilities of each state.}
   \label{fig-all-dec-pie}
 \end{figure} 
 
@@ -532,7 +499,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-impossible-MLstates.png}
-  \caption{All pinnipeds, DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
+  \caption{DEC+J model, impossible states removed. Nodes show Maximum Likelihood states.}
   \label{fig-all-decj-ml}
 \end{figure} 
 
@@ -540,7 +507,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-impossible-pies.png}
-  \caption{All pinnipeds, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
+  \caption{DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
   \label{fig-all-decj-pie}
 \end{figure} 
  
@@ -553,7 +520,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-unlikely-MLstates.png}
-  \caption{All pinnipeds, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+  \caption{DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
   \label{fig-all-dec-ml-unlikely}
 \end{figure} 
 
@@ -561,7 +528,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DEC-unlikely-pies.png}
-  \caption{All pinnipeds, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+  \caption{DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
   \label{fig-all-dec-pie-unlikely}
 \end{figure} 
 
@@ -569,7 +536,7 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-unlikely-MLstates.png}
-  \caption{All pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
+  \caption{DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
   \label{fig-all-decj-ml-unlikely}
 \end{figure} 
 
@@ -577,13 +544,80 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \begin{figure}[H]
  \centering
   \includegraphics[width = \linewidth]{figures/all-pinnipeds-DECj-unlikely-pies.png}
-  \caption{All pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
+  \caption{DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
   \label{fig-all-decj-pie-unlikely}
 \end{figure} 
 
+
+%-------------------------------------------------------------------------------
+\newpage
+\section{The effects of adding fossils}
+
+To understand the influence of fossil taxa on our results, we compared our results with and without fossil taxa included. The results of these analyses are described below. In summary, these results contribute evidence for the key importance of including fossils in these kinds of analyses. Without fossils our results are at best incomplete, as demonstrated by our diversification analyses, and at worst misleading, for example in our biogeography analyses where we were unable to resolve the origins of several major pinniped clades unless fossil taxa were included.
+
+%-------------------------------------------------------------------------------
+% Diversification
 %-----------------------------------------------------------------------------------
-\subsection{Extant pinnipeds only}
-\subsubsection{Impossible states removed}
+\section{Diversification dynamics - extant or fossil taxa only}
+
+\subsection{Extant taxa only}
+
+When using the tree containing only extant species, we were unable to detect any of the shifts that we found for the complete tree (Figure \ref{fig-extant-only}), instead diversification rates are constant. There is also very little variation in all rates through time.
+
+% figure
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \linewidth]{figures/diversification/extant-only/sensitivity-analysis-extant-only.png}
+  \caption{Extant pinnipeds only. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively. Taxon names have been removed  for readability.}
+  \label{fig-extant-only}
+\end{figure}
+
+\subsection{Fossil taxa only}
+
+Regardless of whether we exclude (Figure \ref{fig-fossil-only-noanc}) or include sampled ancestors (Figure \ref{fig-fossil-only-full}), we still infer a shift in diversification rates in the Odobenidae when analysing the fossil taxa only tree, but the three shifts within Phocidae seen when using all taxa are not detected. The odobenid shifts in the two topologies differ in position, with the tree including sampled ancestors (Figure \ref{fig-fossil-only-full}) showing a shift that is slightly deeper in the tree, therefore grouping a few more lineages than the shift in the tree without sampled ancestors (Figure \ref{fig-fossil-only-noanc}).
+
+% figure
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \linewidth]{figures/diversification/fossil-only/sensitivity-analysis-fossil-only.png}
+  \caption{Fossil pinnipeds only, excluding sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively. Taxon names have been removed  for readability.}
+  \label{fig-fossil-only-noanc}
+\end{figure}
+
+% figure
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \linewidth]{figures/diversification/fossil-only-with-sampled-ancestors/sensitivity-analysis-fossil-only-full.png}
+  \caption{Fossil pinnipeds only, including sampled ancestors. $\lambda_{prior} = 1$. Left, middle and right panels indicate speciation, extinction and net diversification rates, respectively. Taxon names have been removed  for readability.}
+  \label{fig-fossil-only-full}
+\end{figure}
+
+\subsection{The importance of including fossils when inferring diversification dynamics}
+
+Using all taxa (fossil and extant), we infer major shifts in diversification rate in two clades - odobenids and phocids - with the former more dramatically impacting the overall diversification dynamics for the group. Critically, excluding fossil taxa led to an inferred scenario of constant-rate diversification for pinnipeds. This is driven by the fact that extant odobenids are represented by just one taxon, the walrus (\textit{Odobenus rosmarus}), thus extant only analyses exclude the substantial extinct diversity of the clade. Similar results have been seen in cetaceans. Using extant only phylogenies, diversification analyses detect only one significant shift in diversification in delphinids (dolphins; \citealt{rabosky2014automatic}). Conversely, inferring a metatree using the same methodology as ours, Lloyd \& Slater (\citeyear{lloyd2021total}) found an additional shift in ziphiids (beaked whales), leading to important discussions about the role of ecological flexibility and sexual selection in the diversification of Cetacea \citep{lloyd2021total}. Note that in both pinnipeds and cetaceans, the results of extant-only analyses are not wrong \textit{per se}; they detect most shifts that are detected in phylogenies with both fossil and extant taxa. However, they miss interesting patterns and obscure the true history of the groups involved.
+
+%-------------------------------------------------------------
+\section{Biogeographical history - extant or fossil taxa only}
+%-------------------------------------------------------------
+
+Regardless of whether we based our analyses on extant taxa only, fossil taxa only, or all taxa, the DEC+J model received favourable support over the DEC model, based on AICc scores (Table \ref{table-biogeo-results}). Results were similar whether only impossible, or impossible and unlikely states were removed (Table \ref{table-unlikely-fossil}).
+
+% table of full results
+\input{figures/table-biogeo-results.tex}
+
+% table of unlikely results
+\input{figures/table-unlikely-fossil-extant.tex}
+
+% figure
+\begin{figure}[H]
+ \centering
+  \includegraphics[width = \linewidth]{figures/biogeography-insets-all.png}
+  \caption{Biogeographic state estimations for the major groups within our study. Pies show the relative proportions of different states at that node. See Figure \ref{fig-legend} for legend. States with proportions less than 0.1 are shown in gray. A) All taxa, DEC; B) all taxa, DEC+J (also in main text results); C) fossil taxa, DEC; D) fossil taxa, DEC+J; E) extant taxa, DEC; F) extant taxa, DEC+J.}
+  \label{fig-nodes-all}
+\end{figure} 
+
+\subsection{Extant taxa only}
+In contrast to the well-supported results from the complete tree, ancestral range inference for the common ancestor of crown pinnipeds is highly ambiguous (Figures \ref{fig-nodes-all}, \ref{fig-extant-dec-ml}-\ref{fig-extant-decj-pie}). Under the preferred DEC+J model, the most likely ancestral range was North Pacific + North Atlantic, but with marginal probability P = 0.09, and comparably supported models add additional areas to the ancestral range. The most likely ancestral range under DEC is North Pacific + North Atlantic + Arctic, but again support is low (P = 0.06) and other area combinations receive comparable support. Similarly, we obtained ambiguous results for crown Phocidae. As for the complete tree, North Atlantic is the most likely area of ancestry but support in these analyses is low (DEC: P = 0.16, DEC+J: P = 0.10). Support for a North Pacific origin of Otarioidea (Odobenidae plus Otariidae) is stronger than support for the phocid node, but still lower than in simultaneous analysis of extant and extinct taxa (DEC: P = 0.60, DEC+J: P = 0.82).
 
 % figure
 \begin{figure}[H]
@@ -626,44 +660,10 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
 \end{figure} 
  
 %-----------------------------------------------------------------------------------
-% unlikely + extant
-\subsubsection{Impossible and unlikely states removed}
+\subsection{Fossil taxa only}
 
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-unlikely-MLstates.png}
-  \caption{Extant pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-extant-dec-ml-unlikely}
-\end{figure} 
+Ancestral range inference based on the phylogeny of fossil taxa only yielded more confident inference for some nodes than we recovered in analyses based on extant taxa only and, in some cases, approached support recovered from analyses of extant and extinct taxa together (Figures \ref{fig-nodes-all}, \ref{fig-fossil-dec-ml}-\ref{fig-fossil-decj-pie}). The node corresponding to the pinniped crown group is now informed by fossil representatives of Otarioidea on the one hand, and Phocidae plus Desmatophocidae on the other, and is confidently inferred to have occupied the North Pacific, regardless of whether jump dispersal is permitted or not (DEC: P = 0.98, DEC+J: P $\greaterthan$ 0.99). The common ancestor of Otarioidea is again inferred to have been North Pacific (P $\greaterthan$ 0.99 under both models), while the common ancestor of crown phocids is here more confidently inferred to have occurred in the North Atlantic (DEC: P = 0.35, DEC+J: P = 0.50) or the North Atlantic plus the Paratethys (DEC: P = 0.47, DEC+J: P = 0.31) due to numerous paratethyan occurrences of crown phocines as well as the devinophocids that fall as sister to crown Phocidae. As in analyses of all taxa, ancestral range inference for Pan-Pinnipedia is ambiguous, with similar levels of support recovered for the same set of possible ranges.   
 
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DEC-unlikely-pies.png}
-  \caption{extant pinnipeds, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-extant-dec-pie-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-unlikely-MLstates.png}
-  \caption{Extant pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-extant-decj-ml-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/extant-pinnipeds-DECj-unlikely-pies.png}
- \caption{extant pinnipeds, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-extant-decj-pie-unlikely}
-\end{figure} 
-
-%-----------------------------------------------------------------------------------
-\subsection{Fossil pinnipeds only}
-\subsubsection{Impossible states removed}
 
 % figure
 \begin{figure}[H]
@@ -704,42 +704,13 @@ A full legend is shown in Figure \ref{fig-legend} and taxon names care shown in 
   \caption{Fossil pinnipeds only, DEC+J model, impossible states removed. Nodes show relative probabilities of each state.}
   \label{fig-fossil-decj-pie}
 \end{figure} 
- 
-%-----------------------------------------------------------------------------------
-% fossil + unlikely
-\subsubsection{Impossible and unlikely states removed}
 
-% figure
-\begin{figure}[H]
-\centering
- \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-dec-ml-unlikely}
-\end{figure} 
+%-------------------------------------------------------------------------------
+\subsection{Excluding fossil taxa from biogeographic analyses prevents robust inferences of biogeographic origins}
 
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DEC-unlikely-pies.png}
-  \caption{Fossil pinnipeds only, DEC model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-dec-pie-unlikely}
-\end{figure} 
+It has long been recognized that ancestral state estimations derived from extant species alone may be inaccurate, particularly when the tempo or mode of evolution deviates from a time-homogeneous, unbiased process \citep{omland1999assumptions,oakley2000independent,wright2015came}. A number of studies have since demonstrated that the inclusion of fossil taxa, either as terminal taxa \citep{finarelli2006ancestral,albert2009fossils,betancur2012apparent} or as prior probability distributions on node states \citep{slater2012integrating}, can overcome these deficiencies and yield more accurate estimates, particularly at deeper nodes in phylogeny. Although the recent proliferation of models of biogeographic range evolution has yielded a diverse, process-based tool-kit for estimating parameters associated with dispersal and within-region extinction, this endeavor remains one of ancestral state inference and is subject to the same biases as applications to phenotypic evolution. A number of recent studies have convincingly demonstrated that the inclusion of fossil data in historical biogeographic analyses can yield inferred ancestral ranges that are at odds with inferences derived from phylogenies of extant species only and, in some cases, suggests that entire clades may have originated in areas that they do not occur in today \citep{field2018north,gunnell2018fossil,siqueira2019historical,azevedo2021fossils,macaluso2022biogeographic}.
 
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-MLstates.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show Maximum Likelihood states.}
-  \label{fig-fossil-decj-ml-unlikely}
-\end{figure} 
-
-% figure
-\begin{figure}[H]
- \centering
-  \includegraphics[width = \linewidth]{figures/fossil-pinnipeds-DECj-unlikely-pies.png}
-  \caption{Fossil pinnipeds only, DEC+J model, impossible and unlikely states removed. Nodes show relative probabilities of each state.}
-  \label{fig-fossil-decj-pie-unlikely}
-\end{figure} 
+Pinniped systematists have increasingly converged on a view that the crown clade originated in the Northern Pacific during the Late Oligocene, and that this region was the primary theatre of diversification for stem-pinnipeds (“enaliarctines”), otarioids (sea-lions and walruses), and desmatophocids. In contrast, phocids (earless seals) originated and, at least initially, diversified in the North Atlantic. Although much of this consensus is derived from a direct reading of the rich pinniped fossil record \citep{repenning1979historical,demere2003chapter}, it is notable that such evidence is also obtainable from molecular phylogenies of extant taxa \citep{fyler2005historical,fulton2010multiple2,churchill2014colonization}. However, our analyses confirm that inference based solely on extant pinniped phylogeny is weak and, in some cases, highly ambiguous. For example, an exclusively North Pacific origin for crown pinnipeds is not recovered among the five ancestral ranges with the highest marginal likelihoods inferred under DEC or DEC+J, and a North Atlantic origin for crown Phocidae is the most likely state but with a marginal probability of just 0.1-0.15. Inference on the complete time-scaled metatree helps resolve these ambiguities and, in the case of crown Phocidae, further reveals that a North Atlantic + paratethyean or exclusively parathethyean origin is not implausible \citep[see also][]{rule2020first}. However, we also note that such biogeographic inference is obtainable from analyzing a time-scaled tree of fossil taxa alone, indicating that fossils likely contain more macroevolutionary signal than do living species. Similar results were obtained in an analysis of historical biogeography of Primates by Wisniewski et al. (\citeyear{wisniewski2022extant}) leading the authors to suggest that, all else being equal, we should prefer to conduct ancestral state inference on phylogenies of extinct taxa, rather than mega-phylogenies of extant organisms \citep[see][for a statistical justification]{ane2008analysis}. Our biogeographic inferences are consistent with this suggestion, though we note that comparison of our diversification rate estimates over the three sets of trees would argue for combining extinct and extant taxa wherever possible. 
 
 %-------------------------------------------------------------------------------
 % Refs
