@@ -213,16 +213,14 @@ colours_pies2 <-
                          state == "I" ~ "#74D7EE",
                          TRUE ~ as.character(col)))
 
-# Extract colours only
-colours_pies3 <- 
-  colours_pies2 %>%
-  pull(col)
+# Order colours by state
+xxx <- colours_pies2 %>% arrange(state)
 
 # Create pies
 # Colour argument gives strange warning but this is just related to change in base R
 # Note weird colour set up is because the state - gets removed for some reason
 # but needs to be the first in the list to match dd3
-pies <- nodepie(dd3, cols = 1:256, alpha = 1, color = c("#eeeeee", colours_pies3))
+pies <- nodepie(dd3, cols = 1:256, alpha = 1, color = c("#eeeeee", xxx$col))
 
 # Add pies to plot
 inset(basic_tree, pies, width = 0.4, height = 1)

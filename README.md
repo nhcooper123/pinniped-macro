@@ -8,7 +8,7 @@ Author(s): Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper
 This repository contains all the code and some data used in the [paper](XXX). 
 
 To cite the paper: 
->  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Macroevolutionary patterns of pinnipeds. in prep.
+>  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Fossils improve our understanding of evolutionary patterns in pinnipeds. in review.
 
 To cite this repo: 
 >  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1.
@@ -20,7 +20,12 @@ This paper has three main components, a metatree of Pinnipedia, biogeographical 
 -------
 ## Metatree
 
-Code for the metatree is within the `metatree-scripts/` folder. Note that the data etc. are too large for GitHub so are available from the [NHM Data Portal](https://doi.org/10.5519/vmbrpkuq) within the `Pinniped_metatree` folder. The file structure of that repository is included below for completeness.
+Code for the metatree is within the `metatree-scripts/` folder. Note that the data etc. are too large for GitHub so are available from [Zenodo](https://doi.org/10.5281/zenodo.8276115). The file structure of that repository is included below for completeness.
+
+If you use the data please cite as follows: 
+>  Travis Park and Graham Slater (2023). Pinniped metatree data and scripts (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8276115
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8276115.svg)](https://doi.org/10.5281/zenodo.8276115)
 
 The set of R scripts used to generate the metatree are:
 
@@ -31,7 +36,7 @@ The set of R scripts used to generate the metatree are:
 2. **process_beast_output.R** Script to read combined, post-burnin output from beast and find the median tree under the Kendall-Colijn distance metric. This tree is used in subsequent macroevolutionary analyses.
 2. **runtntoutputcollator.R** Utility script to read the output from TNT analysis of the ensemble MRP matrix, find all unique shortest trees, and assemble a combined MPT file, consensus trees, and perform safe taxonomic reinsertion. 
 
-### `Pinniped_metatree` folder ([NHM Data Portal](https://doi.org/10.5519/vmbrpkuq))
+### `Pinniped_metatree` folder ([Zenodo](https://doi.org/10.5281/zenodo.8276115))
 
 The file structure of that repository is as follows: 
 
