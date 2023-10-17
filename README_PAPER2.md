@@ -21,6 +21,9 @@
     1. *pinniped-fossil-geography_9areas.txt* - geography file for fossil taxa in the biogeography analyses.
     1. *timeperiods-all_9areas.txt* - file defining the time periods for time stratified analyses.
     1. *pinniped_areas_new_GB_phylip-JRule_edit-nocomments.txt* - raw geography data.
+    1. *DEC-all-node-probabilities.csv* - marginal probabilities of all states at each node in the full tree, under the DEC model.
+    1. *DECJ-all-node-probabilities.csv* - marginal probabilities of all states at each node in the full tree, under the DEC+J model.
+    1. *node-labels-tree.png* - tree with node numbers for interpreting *DEC-all-node-probabilities.csv* and *DECJ-all-node-probabilities.csv*
 
 - Pinniped metatree
 
