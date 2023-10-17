@@ -1,7 +1,9 @@
 ### BioGeoBEARS analysis ###
 ## BTTW project July 2023
 ## ALL TAXA. 
-## Remove impossible states only
+### NOTE THIS CODE DOES NOT WORK ###
+### FAILS EITHER TO FIT DUE TO OVER CONSTRAINED ANALYSIS IF TIME PERIODS ARE INCLUDED
+### OR FAILS DUE TO MEMORY ALLOCATION MAX BEING REACHED IF ANALYSIS IS NOT CONSTRAINED
 
 # This R-script is a modified version of the original BioGeoBEARS
 # R script that can be found at http://phylo.wikidot.com/biogeobears
@@ -21,8 +23,8 @@ geogfn <- "biogeography/data/pinniped-all-geography_26areas.txt"
 # Set tip ranges and max range size
 #----------------------------------
 tipranges <- getranges_from_LagrangePHYLIP(lgdata_fn=geogfn)
-# Set the maximum number of areas any species may occupy (max observed + 1 = 4)
-max_range_size <- 4
+# Set the maximum number of areas any species may occupy (max observed + 1 = 9)
+max_range_size <- 9
 
 #---------------------------------
 # BAYAREALIKE ANALYSIS SETUP
@@ -62,10 +64,10 @@ BioGeoBEARS_run_object = readfiles_BioGeoBEARS_run(BioGeoBEARS_run_object)
 # Divide the tree up by timeperiods/strata (uncomment this for stratified analysis)
 BioGeoBEARS_run_object <- section_the_tree(inputs = BioGeoBEARS_run_object, 
                                            make_master_table = TRUE, 
-                                           plot_pieces = FALSE, 
-                                           cut_fossils = FALSE)
+                                          plot_pieces = FALSE, 
+                                          cut_fossils = FALSE)
 # The stratified tree is described in this table:
-BioGeoBEARS_run_object$master_table
+#BioGeoBEARS_run_object$master_table
 
 # Good default settings to get ancestral states
 BioGeoBEARS_run_object$return_condlikes_table <- TRUE
@@ -95,15 +97,14 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["mx01y","init"] = 0
 BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["mx01y","est"] = 0.9999
 
 # Check the inputs; fixing any initial ("init") values outside min/max
-BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=BioGeoB
+BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=BioGeoBEARS_run_object)
 
 # Check inputs. Read the error messages if you get them!
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
-#----------------------------------
+#----------------------------------------
 # Run BAYAREALIKE model and save results
-#----------------------------------
-# Impossible removed only
+#----------------------------------------
 resfn <- "biogeography/outputs/pinnipeds-all-BAYAREALIKE_26areas_.Rdata"
 resBA <- bears_optim_run(BioGeoBEARS_run_object)
 resBA    
@@ -124,10 +125,6 @@ BioGeoBEARS_run_object$include_null_range <- TRUE
 
 # time-stratified analysis:
 BioGeoBEARS_run_object$timesfn <- "biogeography/data/timeperiods-all_9areas.txt"
-#BioGeoBEARS_run_object$dispersal_multipliers_fn = "time_strat_disp.txt"
-#BioGeoBEARS_run_object$areas_allowed_fn = "areas_allowed.txt"
-#BioGeoBEARS_run_object$areas_adjacency_fn = "areas_adjacency.txt"
-#BioGeoBEARS_run_object$distsfn = "distances.txt"
 
 # Speed options and multicore processing if desired
 BioGeoBEARS_run_object$on_NaN_error <- -1e50    
