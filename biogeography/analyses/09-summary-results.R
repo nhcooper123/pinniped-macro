@@ -57,8 +57,9 @@ DECJ_fossil <- extract_results(tree_fossil, tipranges_fossil, resDECJ_fossil)
 DEC_extant <- extract_results(tree_extant, tipranges_extant, resDEC_extant)
 DECJ_extant <- extract_results(tree_extant, tipranges_extant, resDECJ_extant)
 
-# Get node numbers. Check using
-# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2)
+# Get node numbers. Check using this code. Save figure for supplemental.
+# ggtree(tree, branch.length = "none") + geom_text2(aes(subset=!isTip, label=node), size =2,  hjust=-.3) + geom_tiplab(size = 2) + xlim(0,40)
+# ggsave("supplemental/figures/node-labels-tree.png", height = 8)
 
 #-----------------------
 # Insets - all
