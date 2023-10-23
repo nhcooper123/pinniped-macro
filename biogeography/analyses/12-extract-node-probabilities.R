@@ -35,6 +35,8 @@ tree1 <- read.tree("biogeography/data/pinniped-tree-all_9areas.tre")
 #----------------------------------------------
 DEC_all <- extract_results(tree1, tipranges, resDEC)
 DECJ_all <- extract_results(tree1, tipranges, resDECJ)
+BA_all <- extract_results(tree1, tipranges, resBA)
+BAJ_all <- extract_results(tree1, tipranges, resBAJ)
 #-------------------------------------------
 # Save all results for all nodes and states
 #-------------------------------------------
@@ -47,3 +49,13 @@ DECJ_allx <- DECJ_all %>%
   select(node, ML, everything())
 
 write_csv(DECJ_allx, file = "supplemental/DECJ-all-node-probabilities.csv")
+
+BA_allx <- BA_all %>%
+  select(node, ML, everything())
+
+write_csv(BA_allx, file = "supplemental/BA-all-node-probabilities.csv")
+
+BAJ_allx <- BAJ_all %>%
+  select(node, ML, everything())
+
+write_csv(BAJ_allx, file = "supplemental/BAJ-all-node-probabilities.csv")
