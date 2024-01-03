@@ -8,7 +8,7 @@ Author(s): Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper
 This repository contains all the code and some data used in the [paper](XXX). 
 
 To cite the paper: 
->  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Fossils improve our understanding of evolutionary patterns in pinnipeds. in review.
+>  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Charting the Course of Pinniped Evolution: insights from molecular phylogeny and fossil record integration. Evolution.
 
 To cite this repo: 
 >  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1.
