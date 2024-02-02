@@ -11,7 +11,7 @@ To cite the paper:
 >  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Charting the Course of Pinniped Evolution: insights from molecular phylogeny and fossil record integration. Evolution.
 
 To cite this repo: 
->  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1. GitHub: nhcooper123/pinniped-macro. Zenodo. DOI: 10611047.
+>  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1. GitHub: nhcooper123/pinniped-macro. Zenodo. DOI: 10.5281/zenodo.10611047.
 
 [![DOI](https://zenodo.org/badge/656148711.svg)](https://zenodo.org/doi/10.5281/zenodo.10611047)
 
