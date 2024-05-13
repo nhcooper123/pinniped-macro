@@ -3,12 +3,12 @@ Code and data for pinniped macroevolution paper
 
 Author(s): Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper
 
-*This README is a work in progess*
+Evolution, qpae061, 
 
-This repository contains all the code and some data used in the [paper](XXX). 
+This repository contains all the code and some data used in the [paper]([XXX](https://doi.org/10.1093/evolut/qpae061)). 
 
 To cite the paper: 
->  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. Charting the Course of Pinniped Evolution: insights from molecular phylogeny and fossil record integration. Evolution.
+>  Park T, Burin G, Lazo-Cancino D, Rees J.P.G., Rule J.P, Slater G.J, Cooper N. 2024. Charting the Course of Pinniped Evolution: insights from molecular phylogeny and fossil record integration. Evolution, qpae061. DOI: 10.1093/evolut/qpae061.
 
 To cite this repo: 
 >  Gustavo Burin, Travis Park, Graham Slater, Natalie Cooper. Code for the paper v1. GitHub: nhcooper123/pinniped-macro. Zenodo. DOI: 10.5281/zenodo.10611047.
