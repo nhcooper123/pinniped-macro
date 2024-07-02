@@ -1,6 +1,6 @@
 ### **Paper 2**: Pinniped macroevolution
 
-> **Paper 2**: Park, T., Burin, G., Lazo-Cancino, D., Rees, J.P.G., Rule, J.P., Slater, G.J., Cooper, N. in review. Fossils improve our understanding of evolutionary patterns in pinnipeds. XXX, XX, XX-XX. DOI: XXX. 
+> **Paper 2**: Park, T., Burin, G., Lazo-Cancino, D., Rees, J.P.G., Rule, J.P., Slater, G.J., Cooper, N. 2024. Charting the course of pinniped evolution: insights from molecular phylogeny and fossil record integration. Evolution, 78, 1212-1226. DOI: 10.1093/evolut/qpae061. 
 
 - Data used in the analyses for the paper
     1. *median_tree.tre*. This is the tree used as a starting point for all the diversification rate and biogeography analyses.
